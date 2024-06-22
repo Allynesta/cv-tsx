@@ -3,7 +3,7 @@ import Card from "./card";
 
 const SkillList = () => {
 	return (
-		<div>
+		<>
 			<ul className="list-group">
 				<li>
 					HTML{" "}
@@ -30,9 +30,9 @@ const SkillList = () => {
 				<li>Python</li>
 				<li>PHP</li>
 				<li>React</li>
-				<Card />
 			</ul>
-		</div>
+			<Card />
+		</>
 	);
 };
 

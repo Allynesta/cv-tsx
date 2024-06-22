@@ -10,8 +10,9 @@ const Skill = () => {
 				<FontAwesomeIcon icon={faCodeCompare} />
 				<b>Skills</b>
 				<p>Programming Knowledge Expertise</p>
-				<SkillList />
 			</div>
+
+			<SkillList />
 		</>
 	);
 };
