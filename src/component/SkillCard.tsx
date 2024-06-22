@@ -3,7 +3,9 @@ import SkillList from "./SkillList";
 
 const SkillCard = () => {
 	// Defining the main App component
-	const items = ["HTML", "CSS", "JS", "Python", "React"]; // Defining an array of items to be used in the ListGroup component
+	const itemsFrontend = ["HTML", "CSS", "JS", "React"]; // Defining an array of items to be used in the ListGroup component
+	const itemsBackend = ["Python", "PHP", "JS"]; // Defining an array of items to be used in the ListGroup component
+	const itemsDevelopmentTools = ["GitHub", "Visual Studio Code"]; // Defining an array of items to be used in the ListGroup component
 
 	return (
 		<>
@@ -11,10 +13,8 @@ const SkillCard = () => {
 				<div className="card-column">
 					<div className="card">
 						<div className="card-info">
-							<h2>Frontend developer</h2>
-
 							<SkillList
-								items={items} // Passing the items array as a prop to ListGroup
+								items={itemsFrontend} // Passing the items array as a prop to ListGroup
 								heading="Frontend developer" // Passing a heading prop to ListGroup
 							/>
 						</div>
@@ -23,9 +23,8 @@ const SkillCard = () => {
 				<div className="card-column">
 					<div className="card">
 						<div className="container">
-							<h2>Backend developer</h2>
 							<SkillList
-								items={items} // Passing the items array as a prop to ListGroup
+								items={itemsBackend} // Passing the items array as a prop to ListGroup
 								heading="Backend developer" // Passing a heading prop to ListGroup
 							/>
 						</div>
@@ -34,10 +33,9 @@ const SkillCard = () => {
 				<div className="card-column">
 					<div className="card">
 						<div className="container">
-							<h2>Fullstack developer</h2>
 							<SkillList
-								items={items} // Passing the items array as a prop to ListGroup
-								heading="Fullstack developer" // Passing a heading prop to ListGroup
+								items={itemsDevelopmentTools} // Passing the items array as a prop to ListGroup
+								heading="Development Tools" // Passing a heading prop to ListGroup
 							/>
 						</div>
 					</div>

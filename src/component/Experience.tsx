@@ -18,7 +18,7 @@ const Experience = () => {
 	};
 
 	return (
-		<div className="experience-section">
+		<div className="experience-section" id="experience-section">
 			<h4>
 				<FontAwesomeIcon icon={faBriefcase} />
 				<b>Working Experience</b>
