@@ -1,9 +1,9 @@
 import About from "./component/About";
-import Card from "./component/Card";
+import Skill from "./component/Skill";
 import Contact from "./component/Contact";
 import Experience from "./component/Experience";
 import Footer from "./component/Footer";
-import Navbar from "./component/Navbar";
+import Navbar from "./component/Header";
 
 function App() {
 	return (
@@ -11,7 +11,7 @@ function App() {
 			<Navbar />
 			<About />
 			<Experience />
-			<Card />
+			<Skill />
 			<Contact />
 			<Footer />
 		</>

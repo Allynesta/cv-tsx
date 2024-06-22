@@ -1,12 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/contact.css";
+import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 
 const Contact = () => {
 	return (
 		<>
 			<div className="contact-section" id="contact-section">
-				<h4>
-					<b>Contact Me..</b>
-				</h4>
+				<FontAwesomeIcon icon={faAddressCard} />
+				<b>Contact Me..</b>
 				<p>Let's get in touch </p>
 				<form action="/action_page.php">
 					<label htmlFor="fname">First Name</label>

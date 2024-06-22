@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../styles/navbar.css";
+import "../styles/header.css";
 
-const Navbar = () => {
+const Header = () => {
 	const [responsive, setResponsive] = useState(false);
 
 	const toggleResponsive = () => {
@@ -16,8 +16,8 @@ const Navbar = () => {
 	};
 
 	return (
-		<>
-			<div
+		<header>
+			<nav
 				className={`topnav-section ${responsive ? "responsive" : ""}`}
 				id="topnav-section"
 			>
@@ -25,11 +25,7 @@ const Navbar = () => {
 					Ally Nesta
 				</a>
 
-				<a
-					className="active"
-					href="#about-section"
-					onClick={handleNavLinkClick}
-				>
+				<a href="#about-section" onClick={handleNavLinkClick}>
 					About Me
 				</a>
 				<a href="#skill-section" onClick={handleNavLinkClick}>
@@ -46,9 +42,9 @@ const Navbar = () => {
 				<a className="icon" onClick={toggleResponsive}>
 					&#9776;
 				</a>
-			</div>
-		</>
+			</nav>
+		</header>
 	);
 };
 
-export default Navbar;
+export default Header;

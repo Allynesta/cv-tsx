@@ -1,5 +1,7 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/experience.css";
 import { useState } from "react";
+import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 
 const Experience = () => {
 	const [expandedPanel, setExpandedPanel] = useState<number | null>(null);
@@ -18,6 +20,7 @@ const Experience = () => {
 	return (
 		<div className="experience-section">
 			<h4>
+				<FontAwesomeIcon icon={faBriefcase} />
 				<b>Working Experience</b>
 			</h4>
 			<button

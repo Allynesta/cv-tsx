@@ -1,64 +1,31 @@
 /* Base Styles */
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
 * {
-  box-sizing: border-box;
-}
-
-
-
-
-
-
-
-/* Footer */
-footer {
-  background-color: darkslategray;
-  padding: 10px;
-  text-align: center;
-  color: white;
-  width: 100%;
-}
-
-/* No Bullets List */
-ul.no-bullets {
-  list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  box-sizing: border-box;
+
 }
 
-ul.no-bullets li {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* About Section */
-.about-section {
-  padding: 50px;
-  text-align: center;
-  background-color: darkslategrey;
-  color: white;
-  width: 100%;
+body {
+  font-family: "Reenie Beanie", cursive;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 
-/* Skill section */
-.skill-section {
-  list-style-type: none;
-  margin: 0;
-  padding: 20px;
-  width: 100%;
-}
+
+
+
+
+
+
+
+
+
+
 
 
 
