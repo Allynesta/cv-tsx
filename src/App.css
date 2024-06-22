@@ -1,0 +1,163 @@
+/* Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Top Navigation */
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width: 100%;
+}
+
+ul.topnav li {
+  float: left;
+}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {
+  background-color: #111;
+}
+
+ul.topnav li a.active {
+  background-color: darkgrey;
+}
+
+ul.topnav li.right {
+  float: right;
+}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li,
+  ul.topnav li.right {
+    float: none;
+  }
+}
+
+/* List Group */
+ul.list-group {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+ul.list-group li {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+}
+
+ul.list-group .badge {
+  background-color: darkslategrey;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 5px 10px;
+  text-align: center;
+  margin-left: 5px;
+}
+
+/* Form Styles */
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: darkslategrey;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #555;
+}
+
+/* Container */
+.container {
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+/* No Bullets List */
+ul.no-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+ul.no-bullets li {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* About Section */
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: darkslategrey;
+  color: white;
+  width: 100%;
+}
+
+
+/* Skill section */
+.skill-section {
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Skill section */
+.contact-section {
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+}
+
