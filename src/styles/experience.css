@@ -23,17 +23,20 @@
     margin-left: 5px;
   }
   
-  .activeaccordion:after {
+  .active .accordion:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
   }
-  
+
+
   .panel {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    display: none; /* Initially hide all panels */
   }
+  
+  .panel.show {
+    display: block; /* Show panel when .show class is applied */
+    
+  }
+  
 
 
   /* Skill section */
