@@ -1,4 +1,3 @@
-import SkillList from "./SkillList";
 import "../styles/skill.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCodeCompare } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +10,6 @@ const Skill = () => {
 				<b>Skills</b>
 				<p>Programming Knowledge Expertise</p>
 			</div>
-
-			<SkillList />
 		</>
 	);
 };

@@ -1,5 +1,4 @@
 import "../styles/listskills.css";
-import Card from "./card";
 
 const SkillList = () => {
 	return (
@@ -31,7 +30,6 @@ const SkillList = () => {
 				<li>PHP</li>
 				<li>React</li>
 			</ul>
-			<Card />
 		</>
 	);
 };
