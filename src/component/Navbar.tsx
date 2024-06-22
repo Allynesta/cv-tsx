@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "../styles/navbar.css";
 
 const Navbar = () => {
@@ -6,6 +6,13 @@ const Navbar = () => {
 
 	const toggleResponsive = () => {
 		setResponsive(!responsive);
+	};
+
+	const handleNavLinkClick = () => {
+		// Close the responsive menu after clicking a nav link on mobile
+		if (responsive) {
+			setResponsive(false);
+		}
 	};
 
 	return (
@@ -18,12 +25,22 @@ const Navbar = () => {
 					Ally Nesta
 				</a>
 
-				<a className="active" href="#about-section">
+				<a
+					className="active"
+					href="#about-section"
+					onClick={handleNavLinkClick}
+				>
 					About Me
 				</a>
-				<a href="#skill-section">Skills</a>
-				<a href="#experience-section">Experience</a>
-				<a href="#contact-section">Contact</a>
+				<a href="#skill-section" onClick={handleNavLinkClick}>
+					Skills
+				</a>
+				<a href="#experience-section" onClick={handleNavLinkClick}>
+					Experience
+				</a>
+				<a href="#contact-section" onClick={handleNavLinkClick}>
+					Contact
+				</a>
 
 				{/* Responsive icon */}
 				<a className="icon" onClick={toggleResponsive}>
