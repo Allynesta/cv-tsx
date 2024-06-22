@@ -1,7 +1,7 @@
 import "../styles/skill.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCodeCompare } from "@fortawesome/free-solid-svg-icons";
-import Card from "./Card";
+import SkillCard from "./SkillCard";
 
 const Skill = () => {
 	return (
@@ -10,7 +10,7 @@ const Skill = () => {
 				<FontAwesomeIcon icon={faCodeCompare} />
 				<b>Skills</b>
 				<p>Programming Knowledge Expertise</p>
-				<Card />
+				<SkillCard />
 			</div>
 		</>
 	);

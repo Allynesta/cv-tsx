@@ -1,7 +1,7 @@
 import "../styles/card.css";
 import SkillList from "./SkillList";
 
-const Card = () => {
+const SkillCard = () => {
 	return (
 		<>
 			<div className="card-row">
@@ -35,4 +35,4 @@ const Card = () => {
 	);
 };
 
-export default Card;
+export default SkillCard;
