@@ -6,12 +6,16 @@ const Experience = () => {
 			<h4>
 				<b>Working Experience</b>
 			</h4>
-			<button className="accordion">Junior Scriptor @ Bilendi Services</button>
+			<button className="accordion">
+				Lead Technical Scriptor @ Bilendi Services
+			</button>
 			<div className="panel">
-				<p>Implement new product</p>
+				<p>Implement new survey project</p>
 				<p>Participate in project launching meeting</p>
 			</div>
-			<button className="accordion">Software QA Tester 1 @ SGS & CO</button>
+			<button className="accordion">
+				Software QA Tester Level 1 @ SGS & CO
+			</button>
 			<div className="panel">
 				<p>
 					Ensuring quality of evolutionary and corrective versions of
