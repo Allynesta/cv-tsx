@@ -1,22 +1,20 @@
+import "../styles/navbar.css";
+
 const Navbar = () => {
 	return (
 		<>
-			<ul className="topnav">
-				<li>
-					<a className="active topnav-centered" href="#home">
-						Home
-					</a>
-				</li>
-				<li>
-					<a href="#about-section">About</a>
-				</li>
-				<li>
-					<a href="#skill-section">Skills</a>
-				</li>
-				<li>
-					<a href="#contact-section">Contact</a>
-				</li>
-			</ul>{" "}
+			<div className="topnav-section" id="topnav-section">
+				<a className="disabledlogo" href="#default">
+					Ally Nesta
+				</a>
+				<a className="active" href="#home">
+					Home
+				</a>
+				<a href="skill-section">Skills</a>
+				<a href="experience-section">Experience</a>
+				<a href="about-section">About Me</a>
+				<a href="contact-section">About Me</a>
+			</div>
 		</>
 	);
 };
