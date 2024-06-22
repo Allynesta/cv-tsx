@@ -1,4 +1,5 @@
 import "../styles/card.css";
+import SkillList from "./SkillList";
 
 const Card = () => {
 	return (
@@ -8,12 +9,8 @@ const Card = () => {
 					<div className="card">
 						<div className="card-info">
 							<h2>Frontend developer</h2>
-							<p className="title">CEO & Founder</p>
-							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-							<p>jane@example.com</p>
-							<p>
-								<button className="button">Contact</button>
-							</p>
+
+							<SkillList />
 						</div>
 					</div>
 				</div>
@@ -21,12 +18,7 @@ const Card = () => {
 					<div className="card">
 						<div className="container">
 							<h2>Backend developer</h2>
-							<p className="title">Art Director</p>
-							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-							<p>mike@example.com</p>
-							<p>
-								<button className="button">Contact</button>
-							</p>
+							<SkillList />
 						</div>
 					</div>
 				</div>
@@ -34,12 +26,7 @@ const Card = () => {
 					<div className="card">
 						<div className="container">
 							<h2>Fullstack developer</h2>
-							<p className="title">Designer</p>
-							<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-							<p>john@example.com</p>
-							<p>
-								<button className="button">Contact</button>
-							</p>
+							<SkillList />
 						</div>
 					</div>
 				</div>

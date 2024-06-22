@@ -25,9 +25,7 @@ const SkillList = () => {
 					</div>
 				</li>
 				<li>JS</li>
-				<li>JQuery</li>
 				<li>Python</li>
-				<li>PHP</li>
 				<li>React</li>
 			</ul>
 		</>
