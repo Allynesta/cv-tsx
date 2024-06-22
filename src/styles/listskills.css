@@ -1,0 +1,24 @@
+/* List Group */
+ul.list-group {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  ul.list-group li {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+  }
+  
+  ul.list-group .badge {
+    background-color: darkslategrey;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-align: center;
+    margin-left: 5px;
+  }

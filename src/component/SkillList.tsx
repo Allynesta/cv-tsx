@@ -1,3 +1,5 @@
+import "../styles/listskills.css";
+
 const SkillList = () => {
 	return (
 		<div>
