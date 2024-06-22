@@ -2,11 +2,14 @@ const About = () => {
 	return (
 		<>
 			<div className="about-section" id="about-section">
-				<h1>About Us Page</h1>
-				<p>Some text about who we are and what we do.</p>
+				<h1>Welcome!</h1>
+				<p>Work Smart</p>
 				<p>
-					Resize the browser window to see that this page is responsive by the
-					way.
+					I'm Ally Nesta,
+					<br /> and I specialize in Web development with a passion for both
+					frontend and backend,
+					<br /> I'm got 1 motto work smart.
+					<br /> Explore my path and let's connect to.
 				</p>
 			</div>
 		</>

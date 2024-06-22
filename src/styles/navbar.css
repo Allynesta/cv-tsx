@@ -23,7 +23,7 @@
 
 /* Add an active class to highlight the current page */
 .topnav-section a.active {
-  background-color: #d70b26;
+  background-color: darkslategrey;
   color: white;
 }
 
