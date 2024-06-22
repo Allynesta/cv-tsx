@@ -5,9 +5,9 @@ const Card = () => {
 		<>
 			<div className="skill-section" id="skill-section">
 				<h4>
-					<b>John Doe</b>
+					<b>Skills and Expertise</b>
 				</h4>
-				<p>Architect & Engineer</p>
+				<p>Programming Knowledge Expertise</p>
 				<SkillList />
 			</div>
 		</>

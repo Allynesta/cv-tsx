@@ -34,3 +34,12 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
   }
+
+
+  /* Skill section */
+.experience-section {
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+}

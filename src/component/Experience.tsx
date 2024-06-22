@@ -3,6 +3,9 @@ import "../styles/experience.css";
 const Experience = () => {
 	return (
 		<div className="experience-section">
+			<h4>
+				<b>Working Experience</b>
+			</h4>
 			<button className="accordion">Junior Scriptor @ Bilendi Services</button>
 			<div className="panel">
 				<p>Implement new product</p>
