@@ -1,11 +1,17 @@
 import "../styles/listskills.css";
 
-const SkillList = () => {
+interface Props {
+	// Defining the Props interface for the ListGroup component
+	items: string[]; // items is an array of strings
+	heading: string; // heading is a string
+}
+
+const SkillList = ({ items, heading }: Props) => {
 	return (
 		<>
 			<ul className="list-group">
 				<li>
-					HTML{" "}
+					HTML
 					<div>
 						<span className="fa fa-star checked" />
 						<span className="fa fa-star checked" />
@@ -27,6 +33,16 @@ const SkillList = () => {
 				<li>JS</li>
 				<li>Python</li>
 				<li>React</li>
+				{heading}
+				{items.length === 0 && <p>No item found in list</p>}{" "}
+				{/* Defining a list with a class name for styling */}
+				{items.map((item) => (
+					<li
+						key={item} // Using item as a unique key for each list element
+					>
+						{item} {/* Displaying the item text */}
+					</li>
+				))}
 			</ul>
 		</>
 	);
