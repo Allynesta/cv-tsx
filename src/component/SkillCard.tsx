@@ -10,36 +10,31 @@ const SkillCard = () => {
 	return (
 		<>
 			<div className="card-row">
-				<div className="card-column">
-					<div className="card">
-						<div className="card-info">
-							<SkillList
-								items={itemsFrontend} // Passing the items array as a prop to ListGroup
-								heading="Frontend developer" // Passing a heading prop to ListGroup
-							/>
+				{[
+					{
+						skillsList: itemsFrontend,
+						skillDescription: "Frontend developer",
+					},
+					{
+						skillsList: itemsBackend,
+						skillDescription: "Backend developer",
+					},
+					{
+						skillsList: itemsDevelopmentTools,
+						skillDescription: "Development Tools",
+					},
+				].map((item, index) => (
+					<div key={index} className="card-column">
+						<div className="card">
+							<div className="card-info">
+								<SkillList
+									skillsList={item.skillsList}
+									skillDescription={item.skillDescription}
+								/>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div className="card-column">
-					<div className="card">
-						<div className="container">
-							<SkillList
-								items={itemsBackend} // Passing the items array as a prop to ListGroup
-								heading="Backend developer" // Passing a heading prop to ListGroup
-							/>
-						</div>
-					</div>
-				</div>
-				<div className="card-column">
-					<div className="card">
-						<div className="container">
-							<SkillList
-								items={itemsDevelopmentTools} // Passing the items array as a prop to ListGroup
-								heading="Development Tools" // Passing a heading prop to ListGroup
-							/>
-						</div>
-					</div>
-				</div>
+				))}
 			</div>
 		</>
 	);
