@@ -7,7 +7,7 @@ const Contact = () => {
 		<>
 			<div className="contact-section" id="contact-section">
 				<FontAwesomeIcon icon={faAddressCard} />
-				<b>Contact Me..</b>
+				<b> Contact Me..</b>
 				<p>Let's get in touch </p>
 				<form action="/action_page.php">
 					<label htmlFor="fname">First Name</label>

@@ -21,7 +21,7 @@ const Experience = () => {
 		<div className="experience-section" id="experience-section">
 			<h4>
 				<FontAwesomeIcon icon={faBriefcase} />
-				<b>Working Experience</b>
+				<b> Working Experience</b>
 			</h4>
 			<button
 				className="accordion"

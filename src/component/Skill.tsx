@@ -2,15 +2,23 @@ import "../styles/skill.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCodeCompare } from "@fortawesome/free-solid-svg-icons";
 import SkillCard from "./SkillCard";
+import Breadcrumb from "./Breadcrumb";
+import { useState } from "react";
 
 const Skill = () => {
+	const [activeBreadcrumb, setActiveBreadcrumb] = useState<string>("All");
+
+	const setBreadcrumbStatus = (status: string) => {
+		setActiveBreadcrumb(status);
+	};
 	return (
 		<>
 			<div className="skill-section" id="skill-section">
 				<FontAwesomeIcon icon={faCodeCompare} />
-				<b>Skills</b>
+				<b> Skills</b>
 				<p>Programming Knowledge Expertise</p>
-				<SkillCard />
+				<Breadcrumb setBreadcrumbStatus={setBreadcrumbStatus} />
+				<SkillCard activeBreadcrumb={activeBreadcrumb} />
 			</div>
 		</>
 	);
