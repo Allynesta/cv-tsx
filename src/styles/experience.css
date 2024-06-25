@@ -28,7 +28,7 @@
   }
 
 
-  .panel {
+  .panel.hide {
     display: none; /* Initially hide all panels */
   }
   
@@ -36,8 +36,15 @@
     display: block; /* Show panel when .show class is applied */
     
   }
-  
 
+
+  
+  div.panel p {
+    margin: 10px;
+}
+div.panel p::before {
+  content: "> ";
+}
 
   /* Skill section */
 .experience-section {

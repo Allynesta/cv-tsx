@@ -26,12 +26,6 @@ const Contact = () => {
 						placeholder="Your last name.."
 						type="text"
 					/>
-					<label htmlFor="purpose">Purpose</label>
-					<select id="purpose" name="purpose">
-						<option value="back">back-end</option>
-						<option value="front">front-end</option>
-						<option value="full">full-stack</option>
-					</select>
 					<label htmlFor="description">Description</label>
 					<textarea
 						id="description"
