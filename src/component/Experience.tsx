@@ -24,7 +24,7 @@ const Experience = () => {
 				<b> Working Experience</b>
 			</h4>
 			<button
-				className="accordion"
+				className={`accordion ${expandedPanel === 0 ? "active" : ""}`}
 				onClick={() => togglePanel(0)}
 				aria-expanded={expandedPanel === 0}
 			>
@@ -35,7 +35,7 @@ const Experience = () => {
 				<p>Participate in project launching meeting</p>
 			</div>
 			<button
-				className="accordion"
+				className={`accordion ${expandedPanel === 1 ? "active" : ""}`}
 				onClick={() => togglePanel(1)}
 				aria-expanded={expandedPanel === 1}
 			>
@@ -50,7 +50,7 @@ const Experience = () => {
 				<p>Create and execute test suites/cases</p>
 			</div>
 			<button
-				className="accordion"
+				className={`accordion ${expandedPanel === 2 ? "active" : ""}`}
 				onClick={() => togglePanel(2)}
 				aria-expanded={expandedPanel === 2}
 			>
@@ -60,7 +60,7 @@ const Experience = () => {
 				<p>Maintenance of company website via WordPress</p>
 			</div>
 			<button
-				className="accordion"
+				className={`accordion ${expandedPanel === 3 ? "active" : ""}`}
 				onClick={() => togglePanel(3)}
 				aria-expanded={expandedPanel === 3}
 			>

@@ -14,8 +14,10 @@ const Skill = () => {
 	return (
 		<>
 			<div className="skill-section" id="skill-section">
-				<FontAwesomeIcon icon={faCodeCompare} />
-				<b> Skills</b>
+				<h4>
+					<FontAwesomeIcon icon={faCodeCompare} />
+					<b> Skills</b>
+				</h4>
 				<p>Programming Knowledge Expertise</p>
 				<Breadcrumb setBreadcrumbStatus={setBreadcrumbStatus} />
 				<SkillCard activeBreadcrumb={activeBreadcrumb} />
