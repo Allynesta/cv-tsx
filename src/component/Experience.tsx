@@ -28,7 +28,7 @@ const Experience = () => {
 				onClick={() => togglePanel(0)}
 				aria-expanded={expandedPanel === 0}
 			>
-				Lead Technical Scriptor @ Bilendi Services
+				Lead Technical Scriptor @ Bilendi Services Ltd
 			</button>
 			<div className={`panel ${expandedPanel === 0 ? "show" : "hide"}`}>
 				<p>Implement new survey project</p>
@@ -39,7 +39,7 @@ const Experience = () => {
 				onClick={() => togglePanel(1)}
 				aria-expanded={expandedPanel === 1}
 			>
-				Software QA Tester Level 1 @ SGS & CO
+				Software QA Tester Level 1 @ SGS & CO Ltd
 			</button>
 			<div className={`panel ${expandedPanel === 1 ? "show" : "hide"}`}>
 				<p>
@@ -54,7 +54,7 @@ const Experience = () => {
 				onClick={() => togglePanel(2)}
 				aria-expanded={expandedPanel === 2}
 			>
-				Web developer @ Enabling Environment
+				Web developer @ Enabling Environments Ltd
 			</button>
 			<div className={`panel ${expandedPanel === 2 ? "show" : "hide"}`}>
 				<p>Maintenance of company website via WordPress</p>
