@@ -21,9 +21,6 @@ const SkillList = ({ skillsList, skillDescription }: Props) => {
 						<div>
 							<span className="fa fa-star checked" />
 							<span className="fa fa-star checked" />
-							<span className="fa fa-star checked" />
-							<span className="fa fa-star" />
-							<span className="fa fa-star" />
 						</div>
 					</li>
 				))}
