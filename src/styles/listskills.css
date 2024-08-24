@@ -36,3 +36,7 @@ ul.list-group {
     background-color: #ff9800;
     color: white;
   }
+
+  .checked {
+    color: orange;
+  }
