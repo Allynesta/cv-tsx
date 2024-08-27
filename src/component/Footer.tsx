@@ -11,15 +11,21 @@ const Footer = () => {
 		<footer>
 			<p>Find me on social media.</p>
 			<ul className="no-bullets">
-				<li>
-					<FontAwesomeIcon icon={faFacebook} />
-				</li>
-				<li>
-					<FontAwesomeIcon icon={faInstagram} />
-				</li>
-				<li>
-					<FontAwesomeIcon icon={faLinkedin} />
-				</li>
+				<a href="https://www.facebook.com/ally.nesta/">
+					<li>
+						<FontAwesomeIcon icon={faFacebook} />
+					</li>
+				</a>
+				<a href="https://www.instagram.com/iamnestally/">
+					<li>
+						<FontAwesomeIcon icon={faInstagram} />
+					</li>
+				</a>
+				<a href="https://www.linkedin.com/in/nesta-ally-9101231b7/">
+					<li>
+						<FontAwesomeIcon icon={faLinkedin} />
+					</li>
+				</a>
 			</ul>
 			<i className="fa-solid fa-copyright">
 				Ally Nesta - Website Underconstruction
