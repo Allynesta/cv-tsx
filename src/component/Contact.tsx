@@ -11,7 +11,7 @@ const Contact = () => {
 					<b> Contact Me..</b>
 				</h4>
 				<p>Let's get in touch </p>
-				<form action="/action_page.php">
+				<form action="#">
 					<label htmlFor="fname">First Name</label>
 					<input
 						id="fname"

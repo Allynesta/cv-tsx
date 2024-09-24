@@ -1,3 +1,8 @@
+/*
+app.css
+*/
+
+
 /* Base Styles */
 * {
   margin: 0;
@@ -6,16 +11,36 @@
   font-family: "Quicksand", sans-serif;
   font-weight: 400;
   font-style: normal;
-
+  scroll-behavior: smooth;
 }
 
+
 body {
-  line-height: 1.6;
-  background-color: #f4f4f4;
+  line-height: 1.8;
+  background-color: #fafafa;
+  color: #333;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #222;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1.5rem;
   color: #333;
 }
 
+a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
+a:hover {
+  color: #0056b3;
+}
 
 
 

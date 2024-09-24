@@ -1,9 +1,18 @@
-/* Skill section */
-.skill-section {
-    list-style-type: none;
-    margin: 0;
-    padding: 20px;
-    width: 100%;
-  }
+/*
+skill.css
+*/
 
-  
+/* Skill Section */
+.skill-section {
+  padding: 50px;
+  background-color: #fafafa;
+}
+
+.skill-section h4 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.skill-section p {
+  color: #666;
+}

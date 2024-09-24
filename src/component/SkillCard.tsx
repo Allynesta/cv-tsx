@@ -7,9 +7,21 @@ interface SkillCardProps {
 
 const SkillCard = ({ activeBreadcrumb }: SkillCardProps) => {
 	// Defining the main App component
-	const itemsFrontend = ["HTML", "CSS", "JS", "React"]; // Defining an array of items to be used in the ListGroup component
-	const itemsBackend = ["Python", "PHP", "JS"]; // Defining an array of items to be used in the ListGroup component
-	const itemsDevelopmentTools = ["GitHub", "Visual Studio Code"]; // Defining an array of items to be used in the ListGroup component
+	const itemsFrontend = [
+		{ name: "HTML", rating: 4 },
+		{ name: "CSS", rating: 3 },
+		{ name: "JS", rating: 3 },
+		{ name: "React", rating: 2 },
+	];
+	const itemsBackend = [
+		{ name: "Python", rating: 4 },
+		{ name: "PHP", rating: 3 },
+		{ name: "JS", rating: 3 },
+	];
+	const itemsDevelopmentTools = [
+		{ name: "GitHub", rating: 2 },
+		{ name: "Visual Studio Code", rating: 3 },
+	];
 
 	const skillsData = [
 		{
