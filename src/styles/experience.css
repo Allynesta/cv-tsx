@@ -1,3 +1,7 @@
+/*
+experience.css
+*/
+
 .accordion {
     background-color: #333;
     color: white;
@@ -12,7 +16,7 @@
   }
   
   .active, .accordion:hover {
-    background-color: #ccc;
+    background-color: cadetblue;
   }
   
   .accordion:after {
@@ -50,6 +54,6 @@ div.panel p::before {
 .experience-section {
   list-style-type: none;
   margin: 0;
-  padding: 20px;
+  padding: 40px;
   width: 100%;
 }

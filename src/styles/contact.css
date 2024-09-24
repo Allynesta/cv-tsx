@@ -1,13 +1,16 @@
+/*
+contact.css
+*/
+
 /* Form Styles */
 
   /* contact main section */
   .contact-section {
     list-style-type: none;
     margin: 0;
-    padding: 20px;
+    padding: 40px;
     width: 100%;
-    background-color: #333;
-    color: white;
+    color: #333;
   }
   
 input[type=text], select, textarea {
@@ -23,7 +26,7 @@ input[type=text], select, textarea {
   
   input[type=submit] {
     width: 100%;
-    background-color: darkslategrey;
+    background-color: cadetblue;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -32,6 +35,13 @@ input[type=text], select, textarea {
   }
   
   input[type=submit]:hover {
-    background-color: darkslategrey;
+    background-color: cadetblue;
   }
 
+  div#contact-section>p {
+    color: #333;
+}
+
+div#contact-section>h4 {
+  color: #333;
+}
