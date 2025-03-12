@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../styles/experience.css";
+import "../styles/global.css";
 import { useState } from "react";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 
@@ -21,7 +21,7 @@ const Experience = () => {
 		<div className="experience-section" id="experience-section">
 			<h4>
 				<FontAwesomeIcon icon={faBriefcase} />
-				<b> Working Experience</b>
+				<b>Working Experience</b>
 			</h4>
 			<button
 				className={`accordion ${expandedPanel === 0 ? "active" : ""}`}
@@ -31,8 +31,17 @@ const Experience = () => {
 				Lead Technical Scriptor @ Bilendi Services Ltd
 			</button>
 			<div className={`panel ${expandedPanel === 0 ? "show" : "hide"}`}>
-				<p>Implement new survey project</p>
-				<p>Participate in project launching meeting</p>
+				<ul className="experience-list">
+					<li>Implement new survey project</li>
+					<li>Participate in project launching meeting</li>
+					<li>
+						Survey programming complexity level 3, 4, and 5 including maxdiff,
+						segmentation, conjoint, multicountry, etc.
+					</li>
+					<li>
+						Working experience with HTML, CSS, JavaScript, jQuery, and Python
+					</li>
+				</ul>
 			</div>
 			<button
 				className={`accordion ${expandedPanel === 1 ? "active" : ""}`}
@@ -42,22 +51,26 @@ const Experience = () => {
 				Software QA Tester Level 1 @ SGS & CO Ltd
 			</button>
 			<div className={`panel ${expandedPanel === 1 ? "show" : "hide"}`}>
-				<p>
-					Ensuring quality of evolutionary and corrective versions of
-					application
-				</p>
-				<p>Create user manuals for new features</p>
-				<p>Create and execute test suites/cases</p>
+				<ul className="experience-list">
+					<li>
+						Ensuring quality of evolutionary and corrective versions of
+						application
+					</li>
+					<li>Create user manuals for new features</li>
+					<li>Create and execute test suites/cases</li>
+				</ul>
 			</div>
 			<button
 				className={`accordion ${expandedPanel === 2 ? "active" : ""}`}
 				onClick={() => togglePanel(2)}
 				aria-expanded={expandedPanel === 2}
 			>
-				Web developer @ Enabling Environments Ltd
+				Web Developer @ Enabling Environments Ltd
 			</button>
 			<div className={`panel ${expandedPanel === 2 ? "show" : "hide"}`}>
-				<p>Maintenance of company website via WordPress</p>
+				<ul className="experience-list">
+					<li>Maintenance of company website using WordPress</li>
+				</ul>
 			</div>
 			<button
 				className={`accordion ${expandedPanel === 3 ? "active" : ""}`}
@@ -67,10 +80,15 @@ const Experience = () => {
 				Trainee @ ABC Motor LTD
 			</button>
 			<div className={`panel ${expandedPanel === 3 ? "show" : "hide"}`}>
-				<p>Helpdesk support</p>
-				<p>Infrastructure support</p>
-				<p>Networking</p>
-				<p>Web development</p>
+				<ul className="experience-list">
+					<li>
+						Helpdesk support – collecting requests of staff using ticketing
+						system
+					</li>
+					<li>Infrastructure support – assisting staff on site</li>
+					<li>Networking – working on Windows Server and firewall</li>
+					<li>Web development – maintaining the company website</li>
+				</ul>
 			</div>
 		</div>
 	);

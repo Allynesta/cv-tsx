@@ -1,4 +1,4 @@
-import "../styles/footer.css";
+import "../styles/global.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faFacebook,
@@ -10,26 +10,42 @@ const Footer = () => {
 	return (
 		<footer>
 			<p>Find me on social media.</p>
-			<ul className="no-bullets">
-				<a href="https://www.facebook.com/ally.nesta/">
-					<li>
+			<ul className="social-media-list">
+				<li>
+					<a
+						href="https://www.facebook.com/ally.nesta/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Facebook"
+					>
 						<FontAwesomeIcon icon={faFacebook} />
-					</li>
-				</a>
-				<a href="https://www.instagram.com/iamnestally/">
-					<li>
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://www.instagram.com/iamnestally/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Instagram"
+					>
 						<FontAwesomeIcon icon={faInstagram} />
-					</li>
-				</a>
-				<a href="https://www.linkedin.com/in/nesta-ally-9101231b7/">
-					<li>
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://www.linkedin.com/in/nesta-ally-9101231b7/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="LinkedIn"
+					>
 						<FontAwesomeIcon icon={faLinkedin} />
-					</li>
-				</a>
+					</a>
+				</li>
 			</ul>
-			<i className="fa-solid fa-copyright">
-				Ally Nesta - Website Underconstruction
-			</i>
+			<p className="footer-note">
+				<i className="fa-solid fa-copyright"></i> Ally Nesta - Website Under
+				Construction
+			</p>
 		</footer>
 	);
 };

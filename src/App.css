@@ -16,10 +16,12 @@ app.css
 
 
 body {
-  line-height: 1.8;
+  line-height: 1.6;
   background-color: #fafafa;
   color: #333;
   font-size: 16px;
+  display: flex;
+  justify-content: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -44,7 +46,14 @@ a:hover {
 
 
 
-
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
 .button {
   border: none;
@@ -66,7 +75,14 @@ a:hover {
 
 
 
-
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
 
 
