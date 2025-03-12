@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../styles/contact.css";
+import "../styles/global.css";
 import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 
 const Contact = () => {

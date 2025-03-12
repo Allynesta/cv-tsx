@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/breadcrumb.css";
+import "../styles/global.css";
 
 interface BreadcrumbProps {
 	setBreadcrumbStatus: (status: string) => void;

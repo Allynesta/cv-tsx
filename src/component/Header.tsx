@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/header.css";
+import "../styles/global.css";
 
 const Header = () => {
 	const [responsive, setResponsive] = useState(false);
@@ -28,11 +28,14 @@ const Header = () => {
 				<a href="#about-section" onClick={handleNavLinkClick}>
 					About Me
 				</a>
+				<a href="#experience-section" onClick={handleNavLinkClick}>
+					Experience
+				</a>
 				<a href="#skill-section" onClick={handleNavLinkClick}>
 					Skills
 				</a>
-				<a href="#experience-section" onClick={handleNavLinkClick}>
-					Experience
+				<a href="#portfolio-section" onClick={handleNavLinkClick}>
+					Portfolio
 				</a>
 				<a href="#contact-section" onClick={handleNavLinkClick}>
 					Contact
