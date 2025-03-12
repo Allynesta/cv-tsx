@@ -528,6 +528,7 @@ footer p {
   
   .project-button:hover {
     background: var(--secondary-color);
+    color: white;
   }
   
   @media (max-width: 768px) {
