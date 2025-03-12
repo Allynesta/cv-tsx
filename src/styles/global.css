@@ -74,6 +74,7 @@ div#root {
 
 .cta-button:hover {
   background-color: var(--secondary-color);
+  color: white;
 }
 
 /* Mobile Responsive */
@@ -527,6 +528,7 @@ footer p {
   
   .project-button:hover {
     background: var(--secondary-color);
+    color: white;
   }
   
   @media (max-width: 768px) {
