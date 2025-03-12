@@ -74,6 +74,11 @@ div#root {
 
 .cta-button:hover {
   background-color: var(--secondary-color);
+  color: white;
+}
+
+a:hover {
+  color: white;
 }
 
 /* Mobile Responsive */
