@@ -1,4 +1,7 @@
 import "../styles/global.css";
+import cvImage from "../assets/cv.png";
+import plannerImage from "../assets/myplanner.png";
+import rnaImage from "../assets/rna.png";
 
 const Portfolio = () => {
 	return (
@@ -9,7 +12,11 @@ const Portfolio = () => {
 			<div className="projects">
 				{/* Planner App */}
 				<div className="project-card">
-					<img src="/images/planner-app.png" alt="Planner App" />
+					<img
+						src={plannerImage}
+						alt="Planner Preview"
+						className="portfolio-image"
+					/>
 					<h2>My Planner App</h2>
 					<p>
 						A smart productivity app to help you organize tasks efficiently.
@@ -28,7 +35,7 @@ const Portfolio = () => {
 
 				{/* CV Website */}
 				<div className="project-card">
-					<img src="/images/cv-website.png" alt="CV Website" />
+					<img src={cvImage} alt="CV Preview" className="portfolio-image" />
 					<h2>Personal CV Website</h2>
 					<p>A modern CV website showcasing my skills and experience.</p>
 					<ul>
@@ -42,7 +49,7 @@ const Portfolio = () => {
 
 				{/* RNA - SEQ University dissertation */}
 				<div className="project-card">
-					<img src="/images/cv-website.png" alt="CV Website" />
+					<img src={rnaImage} alt="RNA Preview" className="portfolio-image" />
 					<h2>RNA-SEQ ANALYSIS</h2>
 					<p>A web-based platform for RNA-seq research</p>
 					<ul>
