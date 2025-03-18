@@ -2,6 +2,7 @@ import "../styles/global.css";
 import cvImage from "../assets/cv.png";
 import plannerImage from "../assets/myplanner.png";
 import rnaImage from "../assets/rna.png";
+import offlineImage from "../assets/offline.png";
 
 const Portfolio = () => {
 	return (
@@ -60,6 +61,24 @@ const Portfolio = () => {
 						href="https://rnaseqanalysis.shinyapps.io/apps/"
 						className="project-button"
 					>
+						View Project
+					</a>
+				</div>
+
+				{/* RNA - SEQ University dissertation */}
+				<div className="project-card">
+					<img
+						src={offlineImage}
+						alt="Offline hike"
+						className="portfolio-image"
+					/>
+					<h2>Offline</h2>
+					<p>A web-site for a tour guide</p>
+					<ul>
+						<li>🛠️ HTML, CSS, JavaScript</li>
+						<li>📊 Data Presentation & Booking</li>
+					</ul>
+					<a href="https://offlinehike.com/" className="project-button">
 						View Project
 					</a>
 				</div>
