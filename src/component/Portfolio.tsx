@@ -3,6 +3,7 @@ import cvImage from "../assets/cv.png";
 import plannerImage from "../assets/myplanner.png";
 import rnaImage from "../assets/rna.png";
 import offlineImage from "../assets/offline.png";
+import captionImage from "../assets/caption.png";
 
 const Portfolio = () => {
 	return (
@@ -65,7 +66,7 @@ const Portfolio = () => {
 					</a>
 				</div>
 
-				{/* RNA - SEQ University dissertation */}
+				{/* Offline Hike */}
 				<div className="project-card">
 					<img
 						src={offlineImage}
@@ -83,19 +84,26 @@ const Portfolio = () => {
 					</a>
 				</div>
 
-				{/* Demo Project 2 - SaaS Dashboard
+				{/* Caption Web App */}
 				<div className="project-card">
-					<img src="/images/saas-dashboard.png" alt="SaaS Dashboard" />
-					<h2>SaaS Analytics Dashboard</h2>
-					<p>An interactive dashboard for tracking business analytics.</p>
+					<img
+						src={captionImage}
+						alt="Caption Preview"
+						className="portfolio-image"
+					/>
+					<h2>Random Quote Generator</h2>
+					<p>An interactive random quote generator.</p>
 					<ul>
-						<li>🛠️ Vue.js, Node.js, Chart.js</li>
-						<li>📊 Data Visualization & User Insights</li>
+						<li>🛠️ JavaScript, React js</li>
+						<li>🔖 API Usage</li>
 					</ul>
-					<a href="/projects/saas" className="project-button">
+					<a
+						href="https://captions-woad.vercel.app/"
+						className="project-button"
+					>
 						View Project
 					</a>
-				</div> */}
+				</div>
 			</div>
 		</section>
 	);
