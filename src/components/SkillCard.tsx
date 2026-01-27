@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "../styles/cardskill.css";
 import SkillList from "./SkillList";
 
 interface SkillCardProps {

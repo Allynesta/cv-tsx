@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "../styles/skill.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCodeCompare } from "@fortawesome/free-solid-svg-icons";
 import SkillCard from "./SkillCard";

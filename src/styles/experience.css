@@ -1,0 +1,82 @@
+/* Experience Section */
+.experience-section {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.experience-section h4 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Accordion Buttons */
+.accordion {
+    width: 100%;
+    background-color: #f7f7f7;
+    color: #333;
+    cursor: pointer;
+    padding: 15px;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    outline: none;
+    transition: 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion:hover {
+    background-color: #eaeaea;
+}
+
+.accordion.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Panel (Hidden by default) */
+.panel {
+    display: none;
+    padding: 15px;
+    background: #f1f1f1;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+.panel p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Show the panel when active */
+.panel.show {
+    display: block;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+    .experience-section {
+        padding: 15px;
+    }
+
+    .accordion {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .panel {
+        padding: 10px;
+    }
+}
