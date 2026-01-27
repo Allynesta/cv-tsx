@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "../styles/about.css";
 
 const About = () => {
 	return (
@@ -16,8 +16,7 @@ const About = () => {
 			<h2>What I Offer</h2>
 			<ul>
 				<li>🚀 Business Websites</li>
-
-				{/* <li>⚡ Custom Web Applications</li> */}
+				<li>⚡ Custom Websites</li>
 				{/* <li>🛒 E-commerce Solutions</li> */}
 				{/* <li>📱 Progressive Web Apps</li> */}
 			</ul>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
-import "../styles/global.css";
+import "../styles/contact.css";
 
 const Contact = () => {
 	const [formData, setFormData] = useState({

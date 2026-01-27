@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "../styles/footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faFacebook,

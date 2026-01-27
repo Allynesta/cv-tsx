@@ -1,0 +1,39 @@
+.contact-section {
+    list-style-type: none;
+    margin: 0;
+    padding: 40px;
+    width: 100%;
+    color: var(--text-color);
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: cadetblue;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: cadetblue;
+}
+
+div#contact-section>p,
+div#contact-section>h4 {
+    color: var(--text-color);
+}

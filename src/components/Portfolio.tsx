@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "../styles/portfolio.css";
 import cvImage from "../assets/cv.png";
 import plannerImage from "../assets/myplanner.png";
 import rnaImage from "../assets/rna.png";
