@@ -61,6 +61,6 @@
 	transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.skill-item.visible .skill-fill {
+.skill-item[data-visible] .skill-fill {
 	width: var(--fill-width);
 }
