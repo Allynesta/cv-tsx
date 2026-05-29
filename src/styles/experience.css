@@ -10,7 +10,7 @@
 .timeline::before {
 	content: '';
 	position: absolute;
-	left: 9px;
+	left: 10px;
 	top: 8px;
 	bottom: 8px;
 	width: 2px;
