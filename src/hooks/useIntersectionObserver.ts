@@ -8,7 +8,7 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(
 	useEffect(() => {
 		const el = ref.current;
 		if (!el) return;
-		const targets = el.querySelectorAll<HTMLElement>(".reveal");
+
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -20,8 +20,22 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(
 			},
 			{ threshold }
 		);
-		targets.forEach((t) => observer.observe(t));
-		return () => observer.disconnect();
+
+		const observeNew = () => {
+			el.querySelectorAll<HTMLElement>(".reveal:not(.visible)").forEach(
+				(t) => observer.observe(t)
+			);
+		};
+
+		observeNew();
+
+		const mutation = new MutationObserver(observeNew);
+		mutation.observe(el, { childList: true, subtree: true });
+
+		return () => {
+			observer.disconnect();
+			mutation.disconnect();
+		};
 	}, [threshold]);
 
 	return ref;
