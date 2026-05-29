@@ -1,13 +1,3 @@
 .skill-section {
-    padding: 50px;
-    background-color: #fafafa;
-}
-
-.skill-section h4 {
-    margin-bottom: 10px;
-    font-size: 22px;
-}
-
-.skill-section p {
-    color: #666;
+	background: var(--color-bg);
 }

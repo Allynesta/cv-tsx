@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 import "../styles/contact.css";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 const Contact = () => {
 	const [formData, setFormData] = useState({
@@ -9,6 +8,7 @@ const Contact = () => {
 		lastname: "",
 		description: "",
 	});
+	const sectionRef = useIntersectionObserver<HTMLElement>();
 
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,61 +20,71 @@ const Contact = () => {
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault(); // Prevent default form submission
-
+		e.preventDefault();
 		const { firstname, lastname, description } = formData;
-		const phoneNumber = "+23059829963"; // Replace with your WhatsApp number (include country code, e.g., 230 for Mauritius)
+		const phoneNumber = "+23059829963";
 		const message = `Hello, my name is ${firstname} ${lastname}. Details: ${description}`;
-
-		// Encode message for URL
 		const encodedMessage = encodeURIComponent(message);
 		const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-
-		// Redirect to WhatsApp
 		window.location.href = whatsappURL;
 	};
 
 	return (
-		<div className="contact-section" id="contact-section">
-			<h4>
-				<FontAwesomeIcon icon={faAddressCard} />
-				<b> Contact Me..</b>
-			</h4>
-			<p>Let's get in touch </p>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="fname">First Name</label>
-				<input
-					id="fname"
-					name="firstname"
-					placeholder="Your name.."
-					type="text"
-					value={formData.firstname}
-					onChange={handleChange}
-					required
-				/>
-				<label htmlFor="lname">Last Name</label>
-				<input
-					id="lname"
-					name="lastname"
-					placeholder="Your last name.."
-					type="text"
-					value={formData.lastname}
-					onChange={handleChange}
-					required
-				/>
-				<label htmlFor="description">Description</label>
-				<textarea
-					id="description"
-					name="description"
-					placeholder="Write something.."
-					style={{ height: "200px" }}
-					value={formData.description}
-					onChange={handleChange}
-					required
-				/>
-				<input type="submit" value="Send to WhatsApp" />
-			</form>
-		</div>
+		<section
+			className="contact-section"
+			id="contact-section"
+			ref={sectionRef}
+		>
+			<div className="section-container">
+				<h2 className="section-title reveal">Contact Me</h2>
+				<p className="section-subtitle reveal">
+					Let&apos;s get in touch
+				</p>
+				<form className="contact-form reveal" onSubmit={handleSubmit}>
+					<div
+						className={`field-wrap${formData.firstname ? " has-value" : ""}`}
+					>
+						<input
+							id="fname"
+							name="firstname"
+							type="text"
+							value={formData.firstname}
+							onChange={handleChange}
+							required
+						/>
+						<label htmlFor="fname">First Name</label>
+					</div>
+					<div
+						className={`field-wrap${formData.lastname ? " has-value" : ""}`}
+					>
+						<input
+							id="lname"
+							name="lastname"
+							type="text"
+							value={formData.lastname}
+							onChange={handleChange}
+							required
+						/>
+						<label htmlFor="lname">Last Name</label>
+					</div>
+					<div
+						className={`field-wrap field-wrap--textarea${formData.description ? " has-value" : ""}`}
+					>
+						<textarea
+							id="description"
+							name="description"
+							value={formData.description}
+							onChange={handleChange}
+							required
+						/>
+						<label htmlFor="description">Message</label>
+					</div>
+					<button type="submit" className="submit-btn">
+						Send via WhatsApp
+					</button>
+				</form>
+			</div>
+		</section>
 	);
 };
 

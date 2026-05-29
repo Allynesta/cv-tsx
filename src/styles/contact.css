@@ -1,39 +1,89 @@
 .contact-section {
-    list-style-type: none;
-    margin: 0;
-    padding: 40px;
-    width: 100%;
-    color: var(--text-color);
+	background: var(--color-bg);
 }
 
-input[type="text"],
-select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
+.contact-form {
+	max-width: 480px;
+	margin: 0 auto;
 }
 
-input[type="submit"] {
-    width: 100%;
-    background-color: cadetblue;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.field-wrap {
+	position: relative;
+	margin-bottom: var(--space-6);
 }
 
-input[type="submit"]:hover {
-    background-color: cadetblue;
+.field-wrap label {
+	position: absolute;
+	top: 50%;
+	left: var(--space-4);
+	transform: translateY(-50%);
+	font-size: 0.875rem;
+	color: var(--color-text-muted);
+	pointer-events: none;
+	transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease,
+		background 0.2s ease;
+	padding: 0 var(--space-1);
 }
 
-div#contact-section>p,
-div#contact-section>h4 {
-    color: var(--text-color);
+.field-wrap--textarea label {
+	top: var(--space-4);
+	transform: none;
+}
+
+.field-wrap.has-value label,
+.field-wrap:focus-within label {
+	top: -0.55em;
+	font-size: 0.75rem;
+	color: var(--color-accent);
+	background: var(--color-bg);
+}
+
+.field-wrap--textarea.has-value label,
+.field-wrap--textarea:focus-within label {
+	top: -0.55em;
+}
+
+.field-wrap input,
+.field-wrap textarea {
+	width: 100%;
+	padding: var(--space-4);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	background: var(--color-surface);
+	color: var(--color-text);
+	font-family: var(--font-sans);
+	font-size: 0.95rem;
+	transition: border-color var(--transition);
+	outline: none;
+}
+
+.field-wrap input:focus,
+.field-wrap textarea:focus {
+	border-color: var(--color-accent);
+}
+
+.field-wrap textarea {
+	min-height: 140px;
+	resize: vertical;
+}
+
+.submit-btn {
+	width: 100%;
+	padding: var(--space-4);
+	background: var(--color-accent);
+	color: #fff;
+	border: none;
+	border-radius: var(--radius-md);
+	font-size: 0.95rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	transition: background var(--transition), opacity var(--transition);
+}
+
+.submit-btn:hover {
+	background: var(--color-accent-hover);
+}
+
+.submit-btn:active {
+	opacity: 0.85;
 }

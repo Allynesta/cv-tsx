@@ -6,38 +6,40 @@ interface Skill {
 }
 
 interface Props {
-	skillsList: Skill[]; // Update the type to reflect the new structure
+	skillsList: Skill[];
 	skillDescription: string;
 }
 
 const SkillList = ({ skillsList, skillDescription }: Props) => {
-	const renderStars = (rating: number) => {
-		const stars = [];
-		for (let i = 1; i <= 5; i++) {
-			stars.push(
-				<span
-					key={i}
-					className={`fa fa-star ${i <= rating ? "checked" : ""}`}
-				/>
-			);
-		}
-		return stars;
-	};
-
 	return (
-		<>
-			<ul className="list-group">
-				<h2>{skillDescription}</h2>
-				{skillsList.length === 0 && <p>No item found in list</p>}
+		<div className="skill-group">
+			<h3 className="skill-group-title">{skillDescription}</h3>
+			{skillsList.length === 0 && (
+				<p className="skill-empty">No skills found</p>
+			)}
+			<ul className="skill-list">
 				{skillsList.map((item) => (
-					<li key={item.name}>
-						{item.name}
-						<div>{renderStars(item.rating)}</div>{" "}
-						{/* Render stars based on rating */}
+					<li key={item.name} className="skill-item reveal">
+						<div className="skill-label">
+							<span className="skill-name">{item.name}</span>
+							<span className="skill-pct">
+								{Math.round((item.rating / 5) * 100)}%
+							</span>
+						</div>
+						<div className="skill-track">
+							<div
+								className="skill-fill"
+								style={
+									{
+										"--fill-width": `${(item.rating / 5) * 100}%`,
+									} as React.CSSProperties
+								}
+							/>
+						</div>
 					</li>
 				))}
 			</ul>
-		</>
+		</div>
 	);
 };
 

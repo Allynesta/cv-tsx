@@ -9,7 +9,6 @@ import {
 const Footer = () => {
 	return (
 		<footer>
-			<p>Find me on social media.</p>
 			<ul className="social-media-list">
 				<li>
 					<a
@@ -43,8 +42,7 @@ const Footer = () => {
 				</li>
 			</ul>
 			<p className="footer-note">
-				<i className="fa-solid fa-copyright"></i> Ally Nesta - Website Under
-				Construction
+				&copy; {new Date().getFullYear()} Ally Nesta
 			</p>
 		</footer>
 	);

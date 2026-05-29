@@ -1,28 +1,32 @@
 import "../styles/skill.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCodeCompare } from "@fortawesome/free-solid-svg-icons";
 import SkillCard from "./SkillCard";
 import Breadcrumb from "./Breadcrumb";
 import { useState } from "react";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 const Skill = () => {
 	const [activeBreadcrumb, setActiveBreadcrumb] = useState<string>("All");
+	const sectionRef = useIntersectionObserver<HTMLElement>();
 
 	const setBreadcrumbStatus = (status: string) => {
 		setActiveBreadcrumb(status);
 	};
+
 	return (
-		<>
-			<div className="skill-section" id="skill-section">
-				<h4>
-					<FontAwesomeIcon icon={faCodeCompare} />
-					<b> Skills</b>
-				</h4>
-				<p>Programming Knowledge Expertise</p>
+		<section
+			className="skill-section"
+			id="skill-section"
+			ref={sectionRef}
+		>
+			<div className="section-container">
+				<h2 className="section-title reveal">Skills</h2>
+				<p className="section-subtitle reveal">
+					Programming Knowledge Expertise
+				</p>
 				<Breadcrumb setBreadcrumbStatus={setBreadcrumbStatus} />
 				<SkillCard activeBreadcrumb={activeBreadcrumb} />
 			</div>
-		</>
+		</section>
 	);
 };
 
