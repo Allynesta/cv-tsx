@@ -1,37 +1,66 @@
-ul.list-group {
-    padding: 0;
-    list-style: none;
+.skill-group {
+	width: 100%;
 }
 
-ul.list-group li {
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
+.skill-group-title {
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--color-text-muted);
+	margin-bottom: var(--space-4);
 }
 
-ul.list-group .badge {
-    background-color: darkslategrey;
-    color: white;
-    font-weight: bold;
-    border-radius: 50%;
-    padding: 5px 10px;
-    text-align: center;
-    margin-left: 5px;
+.skill-empty {
+	font-size: 0.875rem;
+	color: var(--color-text-muted);
 }
 
-.ribbon {
-    width: 60px;
-    font-size: 14px;
-    padding: 4px;
-    position: absolute;
-    right: -25px;
-    top: -12px;
-    text-align: center;
-    border-radius: 25px;
-    transform: rotate(20deg);
-    background-color: #ff9800;
-    color: white;
+.skill-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
 }
 
-.checked {
-    color: #ffd700;
+.skill-item {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+.skill-label {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.skill-name {
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--color-text);
+}
+
+.skill-pct {
+	font-size: 0.75rem;
+	color: var(--color-text-muted);
+	font-weight: 500;
+}
+
+.skill-track {
+	height: 4px;
+	background: var(--color-border);
+	border-radius: var(--radius-full);
+	overflow: hidden;
+}
+
+.skill-fill {
+	height: 100%;
+	width: 0;
+	background: var(--color-accent);
+	border-radius: var(--radius-full);
+	transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-item.visible .skill-fill {
+	width: var(--fill-width);
 }

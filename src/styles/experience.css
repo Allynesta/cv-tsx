@@ -1,82 +1,144 @@
-/* Experience Section */
 .experience-section {
-    max-width: 800px;
-    margin: 60px auto;
-    padding: 20px;
-    text-align: center;
+	background: var(--color-bg-alt);
 }
 
-.experience-section h4 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+.timeline {
+	position: relative;
+	padding-left: var(--space-8);
 }
 
-/* Accordion Buttons */
-.accordion {
-    width: 100%;
-    background-color: #f7f7f7;
-    color: #333;
-    cursor: pointer;
-    padding: 15px;
-    text-align: left;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: none;
-    border-bottom: 2px solid #ddd;
-    outline: none;
-    transition: 0.3s;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.timeline::before {
+	content: '';
+	position: absolute;
+	left: 9px;
+	top: 8px;
+	bottom: 8px;
+	width: 2px;
+	background: var(--color-border);
 }
 
-.accordion:hover {
-    background-color: #eaeaea;
+.timeline-item {
+	position: relative;
+	margin-bottom: var(--space-4);
 }
 
-.accordion.active {
-    background-color: var(--primary-color);
-    color: white;
+.timeline-dot {
+	position: absolute;
+	left: calc(-1 * var(--space-8) + 5px);
+	top: 20px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--color-border);
+	border: 2px solid var(--color-bg-alt);
+	transition: background var(--transition), transform var(--transition);
+	z-index: 1;
 }
 
-/* Panel (Hidden by default) */
-.panel {
-    display: none;
-    padding: 15px;
-    background: #f1f1f1;
-    text-align: left;
-    border-bottom: 2px solid #ddd;
+.timeline-item.expanded .timeline-dot {
+	background: var(--color-accent);
+	transform: scale(1.3);
 }
 
-.panel p {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: #555;
+.timeline-item:hover .timeline-dot {
+	background: var(--color-accent);
 }
 
-/* Show the panel when active */
-.panel.show {
-    display: block;
+.timeline-content {
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	transition: border-color var(--transition);
 }
 
-/* Mobile Responsive */
-@media screen and (max-width: 768px) {
-    .experience-section {
-        padding: 15px;
-    }
+.timeline-item:hover .timeline-content,
+.timeline-item.expanded .timeline-content {
+	border-color: var(--color-accent);
+}
 
-    .accordion {
-        font-size: 1rem;
-        padding: 12px;
-    }
+.timeline-header {
+	width: 100%;
+	background: none;
+	border: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: var(--space-4) var(--space-5);
+	text-align: left;
+	gap: var(--space-4);
+	transition: background var(--transition);
+}
 
-    .panel {
-        padding: 10px;
-    }
+.timeline-header:hover {
+	background: var(--color-bg-alt);
+}
+
+.timeline-header-info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+}
+
+.timeline-company {
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--color-text);
+}
+
+.timeline-role {
+	font-size: 0.875rem;
+	color: var(--color-text-muted);
+}
+
+.timeline-period {
+	font-size: 0.75rem;
+	color: var(--color-accent);
+	font-weight: 500;
+	letter-spacing: 0.02em;
+}
+
+.timeline-chevron {
+	font-size: 1.2rem;
+	font-weight: 300;
+	color: var(--color-text-muted);
+	flex-shrink: 0;
+	line-height: 1;
+	padding-top: 4px;
+}
+
+.timeline-body {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.35s ease;
+}
+
+.timeline-body.open {
+	max-height: 400px;
+}
+
+.timeline-body ul {
+	padding: 0 var(--space-5) var(--space-4);
+}
+
+.timeline-body li {
+	padding: var(--space-2) 0;
+	font-size: 0.875rem;
+	color: var(--color-text-muted);
+	border-bottom: 1px solid var(--color-border);
+	line-height: 1.55;
+}
+
+.timeline-body li:last-child {
+	border-bottom: none;
+}
+
+@media (max-width: 640px) {
+	.timeline {
+		padding-left: var(--space-6);
+	}
+
+	.timeline-dot {
+		left: calc(-1 * var(--space-6) + 5px);
+	}
 }

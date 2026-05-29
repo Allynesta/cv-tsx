@@ -1,50 +1,84 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faSun,
+	faMoon,
+	faBars,
+	faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles/header.css";
 
-const Header = () => {
-	const [responsive, setResponsive] = useState(false);
+interface NavbarProps {
+	onToggleDark: () => void;
+	isDark: boolean;
+}
 
-	const toggleResponsive = () => {
-		setResponsive(!responsive);
-	};
+const Header = ({ onToggleDark, isDark }: NavbarProps) => {
+	const [responsive, setResponsive] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+	const [scrollProgress, setScrollProgress] = useState(0);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop = window.scrollY;
+			const docHeight =
+				document.body.scrollHeight - window.innerHeight;
+			setScrolled(scrollTop > 50);
+			setScrollProgress(
+				docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
+			);
+		};
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	const handleNavLinkClick = () => {
-		// Close the responsive menu after clicking a nav link on mobile
-		if (responsive) {
-			setResponsive(false);
-		}
+		if (responsive) setResponsive(false);
 	};
 
 	return (
 		<header>
+			<div
+				className="scroll-progress"
+				style={{ width: `${scrollProgress}%` }}
+			/>
 			<nav
-				className={`topnav-section ${responsive ? "responsive" : ""}`}
-				id="topnav-section"
+				className={`topnav-section${scrolled ? " scrolled" : ""}${responsive ? " responsive" : ""}`}
 			>
-				<a className="disabledlogo" href="#default">
-					Ally Nesta
-				</a>
+				<span className="nav-logo">Ally Nesta</span>
 
-				<a href="#about-section" onClick={handleNavLinkClick}>
-					About Me
-				</a>
-				<a href="#experience-section" onClick={handleNavLinkClick}>
-					Experience
-				</a>
-				<a href="#skill-section" onClick={handleNavLinkClick}>
-					Skills
-				</a>
-				<a href="#portfolio-section" onClick={handleNavLinkClick}>
-					Portfolio
-				</a>
-				<a href="#contact-section" onClick={handleNavLinkClick}>
-					Contact
-				</a>
+				<div className="nav-links">
+					<a href="#about-section" onClick={handleNavLinkClick}>
+						About
+					</a>
+					<a href="#experience-section" onClick={handleNavLinkClick}>
+						Experience
+					</a>
+					<a href="#skill-section" onClick={handleNavLinkClick}>
+						Skills
+					</a>
+					<a href="#portfolio-section" onClick={handleNavLinkClick}>
+						Portfolio
+					</a>
+					<a href="#contact-section" onClick={handleNavLinkClick}>
+						Contact
+					</a>
+					<button
+						className="dark-toggle"
+						onClick={onToggleDark}
+						aria-label="Toggle dark mode"
+					>
+						<FontAwesomeIcon icon={isDark ? faSun : faMoon} />
+					</button>
+				</div>
 
-				{/* Responsive icon */}
-				<a className="icon" onClick={toggleResponsive}>
-					&#9776;
-				</a>
+				<button
+					className="nav-toggle"
+					onClick={() => setResponsive(!responsive)}
+					aria-label="Toggle menu"
+				>
+					<FontAwesomeIcon icon={responsive ? faXmark : faBars} />
+				</button>
 			</nav>
 		</header>
 	);
