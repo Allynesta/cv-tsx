@@ -13,7 +13,7 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
-						entry.target.classList.add("visible");
+						(entry.target as HTMLElement).dataset.visible = "true";
 						observer.unobserve(entry.target);
 					}
 				});
@@ -22,7 +22,7 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(
 		);
 
 		const observeNew = () => {
-			el.querySelectorAll<HTMLElement>(".reveal:not(.visible)").forEach(
+			el.querySelectorAll<HTMLElement>(".reveal:not([data-visible])").forEach(
 				(t) => observer.observe(t)
 			);
 		};

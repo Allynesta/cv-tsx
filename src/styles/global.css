@@ -107,14 +107,14 @@ ul {
 .section-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: var(--space-24) var(--space-6);
+  padding: var(--space-16) var(--space-6);
 }
 
 .section-title {
   font-size: 1.75rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   color: var(--color-text);
   letter-spacing: -0.02em;
 }
@@ -122,18 +122,31 @@ ul {
 .section-subtitle {
   text-align: center;
   color: var(--color-text-muted);
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-8);
   font-size: 0.95rem;
 }
 
 /* ===== Scroll Reveal ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+/* CSS animation with fill-mode:both is used instead of a transition.
+   Once a CSS animation completes, its end-state is permanent regardless
+   of className changes. A transition re-evaluates on every render and
+   can flicker back to opacity:0 when React updates className. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+.reveal {
+  animation: reveal-in 0.5s ease both;
+  animation-play-state: paused;
+}
+
+.reveal[data-visible] {
+  animation-play-state: running;
 }

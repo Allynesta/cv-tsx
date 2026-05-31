@@ -55,7 +55,7 @@ const SkillCard = ({ activeBreadcrumb }: SkillCardProps) => {
 				<div
 					key={index}
 					className={`skill-card reveal ${item.className}`}
-					style={{ transitionDelay: `${index * 100}ms` }}
+					style={{ animationDelay: `${index * 100}ms` }}
 				>
 					<SkillList
 						skillsList={item.skillsList}

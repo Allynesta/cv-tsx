@@ -81,7 +81,7 @@ const Portfolio = () => {
 						<div
 							key={index}
 							className="project-card reveal"
-							style={{ transitionDelay: `${index * 80}ms` }}
+							style={{ animationDelay: `${index * 80}ms` }}
 						>
 							<div className="img-wrap">
 								<img
