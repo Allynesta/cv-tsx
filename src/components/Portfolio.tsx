@@ -88,6 +88,8 @@ const Portfolio = () => {
 									src={project.image}
 									alt={project.alt}
 									className="portfolio-image"
+									loading="lazy"
+									decoding="async"
 								/>
 								<div className="project-overlay">
 									<p className="overlay-desc">{project.description}</p>

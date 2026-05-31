@@ -22,6 +22,7 @@ const Breadcrumb = ({ setBreadcrumbStatus }: BreadcrumbProps) => {
 					key={label}
 					className={`filter-btn${activeIndex === i ? " active" : ""}`}
 					onClick={() => handleFilter(i, label)}
+					aria-pressed={activeIndex === i}
 				>
 					{label}
 				</button>

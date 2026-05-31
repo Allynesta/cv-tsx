@@ -9,8 +9,12 @@ import Portfolio from "./components/Portfolio";
 
 function App() {
 	const [dark, setDark] = useState<boolean>(() => {
-		const stored = localStorage.getItem("theme");
-		if (stored) return stored === "dark";
+		try {
+			const stored = localStorage.getItem("theme");
+			if (stored) return stored === "dark";
+		} catch {
+			// localStorage unavailable (Safari private browsing)
+		}
 		return window.matchMedia("(prefers-color-scheme: dark)").matches;
 	});
 
@@ -19,7 +23,11 @@ function App() {
 			"data-theme",
 			dark ? "dark" : "light"
 		);
-		localStorage.setItem("theme", dark ? "dark" : "light");
+		try {
+			localStorage.setItem("theme", dark ? "dark" : "light");
+		} catch {
+			// ignore
+		}
 	}, [dark]);
 
 	return (

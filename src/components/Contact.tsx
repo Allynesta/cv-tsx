@@ -22,6 +22,7 @@ const Contact = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		const { firstname, lastname, description } = formData;
+		if (!firstname.trim() || !lastname.trim() || !description.trim()) return;
 		const phoneNumber = "+23059829963";
 		const message = `Hello, my name is ${firstname} ${lastname}. Details: ${description}`;
 		const encodedMessage = encodeURIComponent(message);
