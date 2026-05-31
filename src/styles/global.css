@@ -127,15 +127,26 @@ ul {
 }
 
 /* ===== Scroll Reveal ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+/* CSS animation with fill-mode:both is used instead of a transition.
+   Once a CSS animation completes, its end-state is permanent regardless
+   of className changes. A transition re-evaluates on every render and
+   can flicker back to opacity:0 when React updates className. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* data-visible is set via dataset.visible in the hook — React does not
-   manage data attributes that are not JSX props, so it survives re-renders */
+.reveal {
+  animation: reveal-in 0.5s ease both;
+  animation-play-state: paused;
+}
+
 .reveal[data-visible] {
-  opacity: 1;
-  transform: translateY(0);
+  animation-play-state: running;
 }

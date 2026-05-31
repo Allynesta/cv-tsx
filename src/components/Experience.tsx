@@ -64,7 +64,7 @@ const Experience = () => {
 						<div
 							key={index}
 							className={`timeline-item reveal${expandedPanel === index ? " expanded" : ""}`}
-							style={{ transitionDelay: `${index * 80}ms` }}
+							style={{ animationDelay: `${index * 80}ms` }}
 						>
 							<div className="timeline-dot" />
 							<div className="timeline-content">
