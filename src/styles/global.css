@@ -34,6 +34,12 @@
 
   --transition: 200ms ease;
   --transition-slow: 400ms ease;
+
+  --color-white: #ffffff;
+  --color-hero-tint: #f0f0ff;
+  --color-hero-tint-dark: #0d0d1a;
+  --color-overlay: rgba(10, 10, 10, 0.82);
+  --color-overlay-text: rgba(255, 255, 255, 0.85);
 }
 
 [data-theme="dark"] {

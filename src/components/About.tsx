@@ -5,6 +5,11 @@ import "../styles/about.css";
 
 const ROLES = ["Full Stack Developer", "React Specialist", "UI Enthusiast"];
 
+const TYPING_SPEED_MS = 80;
+const DELETING_SPEED_MS = 45;
+const PAUSE_AFTER_COMPLETE_MS = 1800;
+const PAUSE_AFTER_DELETE_MS = 300;
+
 const About = () => {
 	const [roleIndex, setRoleIndex] = useState(0);
 	const [displayText, setDisplayText] = useState("");
@@ -18,22 +23,22 @@ const About = () => {
 			if (displayText.length < current.length) {
 				delay = setTimeout(
 					() => setDisplayText(current.slice(0, displayText.length + 1)),
-					80
+					TYPING_SPEED_MS
 				);
 			} else {
-				delay = setTimeout(() => setIsDeleting(true), 1800);
+				delay = setTimeout(() => setIsDeleting(true), PAUSE_AFTER_COMPLETE_MS);
 			}
 		} else {
 			if (displayText.length > 0) {
 				delay = setTimeout(
 					() => setDisplayText(displayText.slice(0, -1)),
-					45
+					DELETING_SPEED_MS
 				);
 			} else {
 				delay = setTimeout(() => {
 					setIsDeleting(false);
 					setRoleIndex((prev) => (prev + 1) % ROLES.length);
-				}, 300);
+				}, PAUSE_AFTER_DELETE_MS);
 			}
 		}
 

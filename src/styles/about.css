@@ -8,11 +8,11 @@
 	padding: var(--space-24) var(--space-6);
 	padding-top: 80px;
 	position: relative;
-	background: linear-gradient(160deg, var(--color-bg) 55%, #f0f0ff 100%);
+	background: linear-gradient(160deg, var(--color-bg) 55%, var(--color-hero-tint) 100%);
 }
 
 [data-theme="dark"] .about-section {
-	background: linear-gradient(160deg, var(--color-bg) 55%, #0d0d1a 100%);
+	background: linear-gradient(160deg, var(--color-bg) 55%, var(--color-hero-tint-dark) 100%);
 }
 
 .hero-content {
@@ -93,7 +93,7 @@
 
 .cta-outline:hover {
 	background: var(--color-accent);
-	color: #fff;
+	color: var(--color-white);
 }
 
 .cta-ghost {
@@ -130,6 +130,17 @@
 @keyframes bounce {
 	0%, 100% { transform: translateX(-50%) translateY(0); }
 	50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+@media (max-width: 768px) {
+	.hero-name {
+		font-size: clamp(2.2rem, 6vw, 3.5rem);
+	}
+
+	.hero-actions {
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
 @media (max-width: 640px) {
