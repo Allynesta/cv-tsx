@@ -1,59 +1,39 @@
 import "../styles/cardskill.css";
 import SkillList from "./SkillList";
+import { useSkills } from "../hooks/useContent";
+import type { SkillCategory } from "../types/content";
 
 interface SkillCardProps {
 	activeBreadcrumb: string;
 }
 
-const itemsFrontend = [
-	{ name: "HTML", rating: 4 },
-	{ name: "CSS", rating: 3 },
-	{ name: "JavaScript", rating: 3 },
-	{ name: "React", rating: 2 },
-];
+const CATEGORIES: SkillCategory[] = ["Frontend", "Backend", "Development Tools"];
 
-const itemsBackend = [
-	{ name: "Python", rating: 4 },
-	{ name: "PHP", rating: 3 },
-	{ name: "JavaScript", rating: 3 },
-];
-
-const itemsDevelopmentTools = [
-	{ name: "GitHub", rating: 2 },
-	{ name: "VS Code", rating: 3 },
-];
-
-const skillsData = [
-	{
-		skillsList: itemsFrontend,
-		skillDescription: "Frontend",
-		className: "itemsFrontend",
-	},
-	{
-		skillsList: itemsBackend,
-		skillDescription: "Backend",
-		className: "itemsBackend",
-	},
-	{
-		skillsList: itemsDevelopmentTools,
-		skillDescription: "Development Tools",
-		className: "itemsDevelopmentTools",
-	},
-];
+const CLASS_MAP: Record<SkillCategory, string> = {
+	Frontend: "itemsFrontend",
+	Backend: "itemsBackend",
+	"Development Tools": "itemsDevelopmentTools",
+};
 
 const SkillCard = ({ activeBreadcrumb }: SkillCardProps) => {
-	const filteredSkillsData = skillsData.filter((item) => {
-		if (activeBreadcrumb === "All") return true;
-		return item.skillDescription
-			.toLowerCase()
-			.includes(activeBreadcrumb.toLowerCase());
-	});
+	const skills = useSkills();
+
+	const grouped = CATEGORIES.map((cat) => ({
+		skillDescription: cat,
+		className: CLASS_MAP[cat],
+		skillsList: skills.filter((s) => s.category === cat),
+	})).filter(
+		(g) =>
+			g.skillsList.length > 0 &&
+			(activeBreadcrumb === "All" ||
+				g.skillDescription.toLowerCase().includes(activeBreadcrumb.toLowerCase()))
+	);
 
 	return (
 		<div className="card-row">
-			{filteredSkillsData.map((item, index) => (
+			{grouped.map((item, index) => (
 				<div
-					key={index}
+					key={item.skillDescription}
 					className={`skill-card reveal ${item.className}`}
 					style={{ animationDelay: `${index * 100}ms` }}
 				>

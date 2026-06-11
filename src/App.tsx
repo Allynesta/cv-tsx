@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import About from "./components/About";
 import Skill from "./components/Skill";
 import Contact from "./components/Contact";
@@ -6,6 +7,25 @@ import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import Navbar from "./components/Header";
 import Portfolio from "./components/Portfolio";
+import AdminApp from "./admin/AdminApp";
+
+const PublicSite = ({
+	onToggleDark,
+	isDark,
+}: {
+	onToggleDark: () => void;
+	isDark: boolean;
+}) => (
+	<>
+		<Navbar onToggleDark={onToggleDark} isDark={isDark} />
+		<About />
+		<Experience />
+		<Skill />
+		<Portfolio />
+		<Contact />
+		<Footer />
+	</>
+);
 
 function App() {
 	const [dark, setDark] = useState<boolean>(() => {
@@ -31,15 +51,18 @@ function App() {
 	}, [dark]);
 
 	return (
-		<>
-			<Navbar onToggleDark={() => setDark((d) => !d)} isDark={dark} />
-			<About />
-			<Experience />
-			<Skill />
-			<Portfolio />
-			<Contact />
-			<Footer />
-		</>
+		<Routes>
+			<Route
+				path="/"
+				element={
+					<PublicSite
+						onToggleDark={() => setDark((d) => !d)}
+						isDark={dark}
+					/>
+				}
+			/>
+			<Route path="/admin/*" element={<AdminApp />} />
+		</Routes>
 	);
 }
 
