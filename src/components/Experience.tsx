@@ -1,49 +1,10 @@
 import { useState } from "react";
 import "../styles/experience.css";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
-
-const experienceData = [
-	{
-		company: "Bilendi Services Ltd",
-		role: "Lead Technical Scriptor",
-		period: "2022 – Present",
-		items: [
-			"Implement new survey projects",
-			"Participate in project launching meetings",
-			"Survey programming at complexity levels 3–5: maxdiff, segmentation, conjoint, multicountry",
-			"Hands-on with HTML, CSS, JavaScript, jQuery, and Python",
-		],
-	},
-	{
-		company: "SGS & CO Ltd",
-		role: "Software QA Tester — Level 1",
-		period: "2021",
-		items: [
-			"Ensured quality of evolutionary and corrective application versions",
-			"Created user manuals for new features",
-			"Created and executed test suites and test cases",
-		],
-	},
-	{
-		company: "Enabling Environments Ltd",
-		role: "Web Developer",
-		period: "2020",
-		items: ["Maintenance of company website using WordPress"],
-	},
-	{
-		company: "ABC Motor LTD",
-		role: "IT Trainee",
-		period: "2019",
-		items: [
-			"Helpdesk support — collecting staff requests via ticketing system",
-			"Infrastructure support — on-site staff assistance",
-			"Networking — Windows Server and firewall",
-			"Web development — maintaining company website",
-		],
-	},
-];
+import { useExperience } from "../hooks/useContent";
 
 const Experience = () => {
+	const experienceData = useExperience();
 	const [expandedPanel, setExpandedPanel] = useState<number | null>(null);
 	const sectionRef = useIntersectionObserver<HTMLElement>();
 
@@ -62,7 +23,7 @@ const Experience = () => {
 				<div className="timeline">
 					{experienceData.map((exp, index) => (
 						<div
-							key={index}
+							key={exp.id}
 							className={`timeline-item reveal${expandedPanel === index ? " expanded" : ""}`}
 							style={{ animationDelay: `${index * 80}ms` }}
 						>
@@ -74,9 +35,7 @@ const Experience = () => {
 									aria-expanded={expandedPanel === index}
 								>
 									<div className="timeline-header-info">
-										<span className="timeline-company">
-											{exp.company}
-										</span>
+										<span className="timeline-company">{exp.company}</span>
 										<span className="timeline-role">{exp.role}</span>
 										<span className="timeline-period">{exp.period}</span>
 									</div>
