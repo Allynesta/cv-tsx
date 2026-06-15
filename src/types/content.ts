@@ -35,3 +35,14 @@ export interface Project {
 	link?: string;
 	order_index: number;
 }
+
+export interface RegisteredSite {
+	id: string;
+	name: string;
+	url: string;
+	type: "owned" | "external";
+	webhook_url?: string;
+	scan_data?: import("../lib/siteScanner").ScanResult;
+	last_scanned_at?: string;
+	created_at: string;
+}
