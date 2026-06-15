@@ -58,8 +58,8 @@ const AdminApp = () => {
 						<span>⊞</span><span>My Sites</span>
 					</NavLink>
 
-					{/* Per-site dynamic nav when on a specific owned site */}
-					{activeSite && activeSite.type === "owned" && siteSchema.length > 0 && (
+					{/* Per-site dynamic nav — any scanned site */}
+					{activeSite && siteSchema.length > 0 && (
 						<>
 							<div className="admin-nav-divider">
 								<span>{activeSite.name}</span>
@@ -84,8 +84,8 @@ const AdminApp = () => {
 						</>
 					)}
 
-					{/* Show overview link for owned sites without scan or external sites */}
-					{activeSite && (activeSite.type === "external" || !siteSchema.length) && (
+					{/* Overview-only for sites with no scan data yet */}
+					{activeSite && !siteSchema.length && (
 						<>
 							<div className="admin-nav-divider">
 								<span>{activeSite.name}</span>
@@ -96,16 +96,20 @@ const AdminApp = () => {
 						</>
 					)}
 
-					{/* Personal CV divider — always shown */}
-					<div className="admin-nav-divider">
-						<span>Personal CV</span>
-					</div>
-					{CV_NAV.map(({ to, label, icon }) => (
-						<NavLink key={to} to={to}>
-							<span>{icon}</span>
-							<span>{label}</span>
-						</NavLink>
-					))}
+					{/* Personal CV nav — only when not viewing another site */}
+					{(!activeSite || activeSite.id === "cv-tsx") && (
+						<>
+							<div className="admin-nav-divider">
+								<span>Personal CV</span>
+							</div>
+							{CV_NAV.map(({ to, label, icon }) => (
+								<NavLink key={to} to={to}>
+									<span>{icon}</span>
+									<span>{label}</span>
+								</NavLink>
+							))}
+						</>
+					)}
 				</nav>
 				<div className="admin-nav-footer">
 					<a href="/" target="_blank" rel="noreferrer">↗ View site</a>

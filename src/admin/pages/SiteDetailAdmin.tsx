@@ -4,6 +4,8 @@ import { loadSites, updateSite } from "../../lib/sitesStore";
 import { fetchAndScan } from "../../lib/siteScanner";
 import type { RegisteredSite } from "../../types/content";
 
+type SiteType = RegisteredSite["type"];
+
 type Tab = "overview" | "structure" | "images" | "links";
 
 const SiteDetailAdmin = () => {
@@ -13,6 +15,13 @@ const SiteDetailAdmin = () => {
 	const [tab, setTab] = useState<Tab>("overview");
 	const [scanning, setScanning] = useState(false);
 	const [scanError, setScanError] = useState("");
+
+	const changeType = (newType: SiteType) => {
+		if (!site) return;
+		const updated = { ...site, type: newType };
+		setSite(updated);
+		updateSite(site.id, { type: newType });
+	};
 
 	useEffect(() => {
 		const found = loadSites().find((s) => s.id === id);
@@ -72,22 +81,25 @@ const SiteDetailAdmin = () => {
 							{site.url} ↗
 						</a>
 					</div>
-					<span className={`site-type-badge ${site.type}`} style={{ marginLeft: "var(--space-2)" }}>{site.type}</span>
+					<button
+						className={`site-type-badge ${site.type}`}
+						style={{ marginLeft: "var(--space-2)", cursor: "pointer", border: "1px dashed currentColor", background: "transparent" }}
+						title="Click to toggle owned / external"
+						onClick={() => changeType(site.type === "owned" ? "external" : "owned")}
+					>
+						{site.type === "owned" ? "✎ owned" : "external"}
+					</button>
 				</div>
 
 				<div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
-					{site.type === "owned" && (
-						<>
-							{scan && (
-								<Link to={`/admin/sites/${site.id}/content`} className="btn btn-secondary btn-sm">Edit content →</Link>
-							)}
-							{site.id === "cv-tsx" && (
-								<Link to="/admin/hero" className="btn btn-secondary btn-sm">Edit CV →</Link>
-							)}
-							{site.webhook_url && (
-								<button className="btn btn-secondary btn-sm" onClick={triggerWebhook}>⟳ Rebuild</button>
-							)}
-						</>
+					{scan && (
+						<Link to={`/admin/sites/${site.id}/content`} className="btn btn-secondary btn-sm">Edit content →</Link>
+					)}
+					{site.id === "cv-tsx" && (
+						<Link to="/admin/hero" className="btn btn-secondary btn-sm">Edit CV →</Link>
+					)}
+					{site.type === "owned" && site.webhook_url && (
+						<button className="btn btn-secondary btn-sm" onClick={triggerWebhook}>⟳ Rebuild</button>
 					)}
 					<button className="btn btn-primary btn-sm" onClick={rescan} disabled={scanning}>
 						{scanning ? "Scanning…" : scan ? "Rescan" : "Scan now"}
