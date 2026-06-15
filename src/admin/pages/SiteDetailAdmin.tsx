@@ -78,8 +78,11 @@ const SiteDetailAdmin = () => {
 				<div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
 					{site.type === "owned" && (
 						<>
+							{scan && (
+								<Link to={`/admin/sites/${site.id}/content`} className="btn btn-secondary btn-sm">Edit content →</Link>
+							)}
 							{site.id === "cv-tsx" && (
-								<Link to="/admin/hero" className="btn btn-secondary btn-sm">Edit content →</Link>
+								<Link to="/admin/hero" className="btn btn-secondary btn-sm">Edit CV →</Link>
 							)}
 							{site.webhook_url && (
 								<button className="btn btn-secondary btn-sm" onClick={triggerWebhook}>⟳ Rebuild</button>
