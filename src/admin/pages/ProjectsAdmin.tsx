@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { supabase, isConfigured } from "../../lib/supabase";
 import { defaultProjects } from "../../data/defaults";
+import { useToast } from "../toast";
+import ConfirmModal from "../ConfirmModal";
 import type { Project } from "../../types/content";
 
 const emptyProject = (order: number): Project => ({
@@ -14,13 +16,7 @@ const emptyProject = (order: number): Project => ({
 	order_index: order,
 });
 
-const TagsEditor = ({
-	tags,
-	onChange,
-}: {
-	tags: string[];
-	onChange: (tags: string[]) => void;
-}) => {
+const TagsEditor = ({ tags, onChange }: { tags: string[]; onChange: (tags: string[]) => void }) => {
 	const [input, setInput] = useState("");
 
 	const addTag = () => {
@@ -53,17 +49,26 @@ const TagsEditor = ({
 };
 
 const ProjectsAdmin = () => {
+	const { toast } = useToast();
 	const [list, setList] = useState<Project[]>(defaultProjects);
+	const [loading, setLoading] = useState(isConfigured);
 	const [editing, setEditing] = useState<string | null>(null);
 	const [form, setForm] = useState<Project>(emptyProject(0));
 	const [saving, setSaving] = useState(false);
 	const [isNew, setIsNew] = useState(false);
+	const [confirm, setConfirm] = useState<{ id: string; title: string } | null>(null);
 
 	useEffect(() => {
 		if (!isConfigured || !supabase) return;
-		supabase.from("projects").select("*").order("order_index").then(({ data }) => {
-			if (data?.length) setList(data);
-		});
+		supabase
+			.from("projects")
+			.select("*")
+			.order("order_index")
+			.then(({ data, error }) => {
+				if (data?.length) setList(data);
+				else if (error) toast("Failed to load projects", "error");
+				setLoading(false);
+			});
 	}, []);
 
 	const startEdit = (p: Project) => { setForm({ ...p }); setEditing(p.id); setIsNew(false); };
@@ -76,34 +81,51 @@ const ProjectsAdmin = () => {
 
 	const save = async () => {
 		setSaving(true);
-		if (isConfigured && supabase) {
-			if (isNew) {
-				const { data } = await supabase
-					.from("projects")
-					.insert({ ...form, id: undefined })
-					.select()
-					.single();
-				if (data) setList((l) => [...l, data]);
+		try {
+			if (isConfigured && supabase) {
+				if (isNew) {
+					const { data, error } = await supabase
+						.from("projects")
+						.insert({ ...form, id: undefined })
+						.select()
+						.single();
+					if (error) throw error;
+					if (data) setList((l) => [...l, data]);
+				} else {
+					const { error } = await supabase.from("projects").update(form).eq("id", form.id);
+					if (error) throw error;
+					setList((l) => l.map((x) => (x.id === form.id ? form : x)));
+				}
 			} else {
-				await supabase.from("projects").update(form).eq("id", form.id);
-				setList((l) => l.map((x) => (x.id === form.id ? form : x)));
+				if (isNew) {
+					setList((l) => [...l, { ...form, id: Date.now().toString() }]);
+				} else {
+					setList((l) => l.map((x) => (x.id === form.id ? form : x)));
+				}
 			}
-		} else {
-			if (isNew) {
-				setList((l) => [...l, { ...form, id: Date.now().toString() }]);
-			} else {
-				setList((l) => l.map((x) => (x.id === form.id ? form : x)));
-			}
+			toast(isNew ? "Project added" : "Changes saved");
+			setEditing(null);
+		} catch (err) {
+			toast(err instanceof Error ? err.message : "Failed to save", "error");
+		} finally {
+			setSaving(false);
 		}
-		setSaving(false);
-		setEditing(null);
 	};
 
 	const remove = async (id: string) => {
-		if (!confirm("Delete this project?")) return;
-		if (isConfigured && supabase) await supabase.from("projects").delete().eq("id", id);
-		setList((l) => l.filter((x) => x.id !== id));
-		if (editing === id) setEditing(null);
+		try {
+			if (isConfigured && supabase) {
+				const { error } = await supabase.from("projects").delete().eq("id", id);
+				if (error) throw error;
+			}
+			setList((l) => l.filter((x) => x.id !== id));
+			if (editing === id) setEditing(null);
+			toast("Project deleted");
+		} catch (err) {
+			toast(err instanceof Error ? err.message : "Failed to delete", "error");
+		} finally {
+			setConfirm(null);
+		}
 	};
 
 	const ProjectForm = () => (
@@ -152,6 +174,15 @@ const ProjectsAdmin = () => {
 		</div>
 	);
 
+	if (loading) {
+		return (
+			<div>
+				<h1 className="admin-page-title">Projects</h1>
+				<div className="admin-page-loading"><span className="admin-loading-dot" /></div>
+			</div>
+		);
+	}
+
 	return (
 		<div>
 			<h1 className="admin-page-title">Projects</h1>
@@ -169,13 +200,11 @@ const ProjectsAdmin = () => {
 							</div>
 							<div className="admin-list-item-actions">
 								<button className="btn btn-secondary btn-sm" onClick={() => startEdit(p)}>Edit</button>
-								<button className="btn btn-danger btn-sm" onClick={() => remove(p.id)}>Delete</button>
+								<button className="btn btn-danger btn-sm" onClick={() => setConfirm({ id: p.id, title: p.title })}>Delete</button>
 							</div>
 						</div>
 						{editing === p.id && (
-							<div className="admin-list-item-body">
-								<ProjectForm />
-							</div>
+							<div className="admin-list-item-body"><ProjectForm /></div>
 						)}
 					</div>
 				))}
@@ -192,6 +221,14 @@ const ProjectsAdmin = () => {
 				<button className="btn btn-secondary" style={{ marginTop: "var(--space-4)" }} onClick={startNew}>
 					+ Add project
 				</button>
+			)}
+
+			{confirm && (
+				<ConfirmModal
+					message={`Delete "${confirm.title}"? This cannot be undone.`}
+					onConfirm={() => remove(confirm.id)}
+					onCancel={() => setConfirm(null)}
+				/>
 			)}
 		</div>
 	);

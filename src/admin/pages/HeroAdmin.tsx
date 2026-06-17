@@ -1,23 +1,32 @@
 import { useState, useEffect } from "react";
 import { supabase, isConfigured } from "../../lib/supabase";
 import { defaultHero } from "../../data/defaults";
+import { useToast } from "../toast";
 import type { HeroContent } from "../../types/content";
 
 const HeroAdmin = () => {
+	const { toast } = useToast();
 	const [form, setForm] = useState<HeroContent>(defaultHero);
+	const [loading, setLoading] = useState(isConfigured);
 	const [saving, setSaving] = useState(false);
-	const [saved, setSaved] = useState(false);
 
 	useEffect(() => {
 		if (!isConfigured || !supabase) return;
-		supabase.from("hero").select("*").single().then(({ data }) => {
-			if (data) setForm(data);
-		});
+		supabase
+			.from("hero")
+			.select("*")
+			.single()
+			.then(({ data, error }) => {
+				if (data) setForm(data);
+				else if (error && error.code !== "PGRST116") {
+					toast("Failed to load hero content", "error");
+				}
+				setLoading(false);
+			});
 	}, []);
 
 	const set = (key: keyof HeroContent, value: string | string[]) => {
 		setForm((f) => ({ ...f, [key]: value }));
-		setSaved(false);
 	};
 
 	const setRole = (i: number, val: string) => {
@@ -26,19 +35,31 @@ const HeroAdmin = () => {
 		set("roles", roles);
 	};
 
-	const addRole = () => set("roles", [...form.roles, ""]);
-
-	const removeRole = (i: number) =>
-		set("roles", form.roles.filter((_, idx) => idx !== i));
-
 	const save = async () => {
 		setSaving(true);
-		if (isConfigured && supabase) {
-			await supabase.from("hero").upsert({ ...form, id: form.id === "default" ? undefined : form.id });
+		try {
+			if (isConfigured && supabase) {
+				const { error } = await supabase
+					.from("hero")
+					.upsert({ ...form, id: form.id === "default" ? undefined : form.id });
+				if (error) throw error;
+			}
+			toast("Changes saved");
+		} catch (err) {
+			toast(err instanceof Error ? err.message : "Failed to save", "error");
+		} finally {
+			setSaving(false);
 		}
-		setSaving(false);
-		setSaved(true);
 	};
+
+	if (loading) {
+		return (
+			<div>
+				<h1 className="admin-page-title">Hero / About</h1>
+				<div className="admin-page-loading"><span className="admin-loading-dot" /></div>
+			</div>
+		);
+	}
 
 	return (
 		<div>
@@ -75,7 +96,7 @@ const HeroAdmin = () => {
 									/>
 									<button
 										className="btn-icon"
-										onClick={() => removeRole(i)}
+										onClick={() => set("roles", form.roles.filter((_, idx) => idx !== i))}
 										disabled={form.roles.length <= 1}
 										title="Remove"
 									>
@@ -83,14 +104,17 @@ const HeroAdmin = () => {
 									</button>
 								</div>
 							))}
-							<button className="btn btn-secondary btn-sm" onClick={addRole} style={{ alignSelf: "flex-start" }}>
+							<button
+								className="btn btn-secondary btn-sm"
+								onClick={() => set("roles", [...form.roles, ""])}
+								style={{ alignSelf: "flex-start" }}
+							>
 								+ Add role
 							</button>
 						</div>
 					</div>
 
 					<div className="admin-save-bar">
-						{saved && <span className="admin-save-msg">✓ Saved</span>}
 						<button className="btn btn-primary" onClick={save} disabled={saving}>
 							{saving ? "Saving…" : "Save changes"}
 						</button>
