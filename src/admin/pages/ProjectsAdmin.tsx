@@ -16,7 +16,13 @@ const emptyProject = (order: number): Project => ({
 	order_index: order,
 });
 
-const TagsEditor = ({ tags, onChange }: { tags: string[]; onChange: (tags: string[]) => void }) => {
+const TagsEditor = ({
+	tags,
+	onChange,
+}: {
+	tags: string[];
+	onChange: (tags: string[]) => void;
+}) => {
 	const [input, setInput] = useState("");
 
 	const addTag = () => {
@@ -31,7 +37,12 @@ const TagsEditor = ({ tags, onChange }: { tags: string[]; onChange: (tags: strin
 			{tags.map((tag) => (
 				<span key={tag} className="tag-chip">
 					{tag}
-					<button onClick={() => onChange(tags.filter((t) => t !== tag))} title="Remove tag">×</button>
+					<button
+						onClick={() => onChange(tags.filter((t) => t !== tag))}
+						title="Remove tag"
+					>
+						×
+					</button>
 				</span>
 			))}
 			<input
@@ -40,13 +51,102 @@ const TagsEditor = ({ tags, onChange }: { tags: string[]; onChange: (tags: strin
 				value={input}
 				onChange={(e) => setInput(e.target.value)}
 				onKeyDown={(e) => {
-					if (e.key === "Enter" || e.key === ",") { e.preventDefault(); addTag(); }
+					if (e.key === "Enter" || e.key === ",") {
+						e.preventDefault();
+						addTag();
+					}
 				}}
 				onBlur={addTag}
 			/>
 		</div>
 	);
 };
+
+// 1. Moving ProjectForm OUTSIDE the main component fixes the focus loss entirely
+interface ProjectFormProps {
+	form: Project;
+	saving: boolean;
+	isNew: boolean;
+	set: <K extends keyof Project>(key: K, val: Project[K]) => void;
+	cancel: () => void;
+	save: () => Promise<void>;
+}
+
+const ProjectForm = ({
+	form,
+	saving,
+	isNew,
+	set,
+	cancel,
+	save,
+}: ProjectFormProps) => (
+	<div className="admin-form">
+		<div className="admin-field-row">
+			<div className="admin-field">
+				<label>Title</label>
+				<input
+					value={form.title}
+					onChange={(e) => set("title", e.target.value)}
+				/>
+			</div>
+			<div className="admin-field">
+				<label>Alt text</label>
+				<input
+					value={form.alt}
+					onChange={(e) => set("alt", e.target.value)}
+					placeholder="Image description"
+				/>
+			</div>
+		</div>
+		<div className="admin-field">
+			<label>Description</label>
+			<textarea
+				value={form.description}
+				onChange={(e) => set("description", e.target.value)}
+			/>
+		</div>
+		<div className="admin-field">
+			<label>Image URL</label>
+			<input
+				value={form.image_url}
+				onChange={(e) => set("image_url", e.target.value)}
+				placeholder="https://... or leave blank"
+			/>
+			{form.image_url ? (
+				<img
+					src={form.image_url}
+					alt=""
+					className="img-preview"
+					onError={(e) => {
+						(e.target as HTMLImageElement).style.display = "none";
+					}}
+				/>
+			) : (
+				<div className="img-preview-placeholder">No image</div>
+			)}
+		</div>
+		<div className="admin-field">
+			<label>Live URL (optional)</label>
+			<input
+				value={form.link ?? ""}
+				onChange={(e) => set("link", e.target.value)}
+				placeholder="https://..."
+			/>
+		</div>
+		<div className="admin-field">
+			<label>Tags (press Enter or comma to add)</label>
+			<TagsEditor tags={form.tags} onChange={(tags) => set("tags", tags)} />
+		</div>
+		<div className="admin-save-bar">
+			<button className="btn btn-secondary" onClick={cancel}>
+				Cancel
+			</button>
+			<button className="btn btn-primary" onClick={save} disabled={saving}>
+				{saving ? "Saving…" : isNew ? "Add project" : "Save changes"}
+			</button>
+		</div>
+	</div>
+);
 
 const ProjectsAdmin = () => {
 	const { toast } = useToast();
@@ -56,7 +156,9 @@ const ProjectsAdmin = () => {
 	const [form, setForm] = useState<Project>(emptyProject(0));
 	const [saving, setSaving] = useState(false);
 	const [isNew, setIsNew] = useState(false);
-	const [confirm, setConfirm] = useState<{ id: string; title: string } | null>(null);
+	const [confirm, setConfirm] = useState<{ id: string; title: string } | null>(
+		null,
+	);
 
 	useEffect(() => {
 		if (!isConfigured || !supabase) return;
@@ -71,8 +173,16 @@ const ProjectsAdmin = () => {
 			});
 	}, []);
 
-	const startEdit = (p: Project) => { setForm({ ...p }); setEditing(p.id); setIsNew(false); };
-	const startNew = () => { setForm(emptyProject(list.length)); setEditing("__new__"); setIsNew(true); };
+	const startEdit = (p: Project) => {
+		setForm({ ...p });
+		setEditing(p.id);
+		setIsNew(false);
+	};
+	const startNew = () => {
+		setForm(emptyProject(list.length));
+		setEditing("__new__");
+		setIsNew(true);
+	};
 	const cancel = () => setEditing(null);
 
 	const set = <K extends keyof Project>(key: K, val: Project[K]) => {
@@ -92,7 +202,10 @@ const ProjectsAdmin = () => {
 					if (error) throw error;
 					if (data) setList((l) => [...l, data]);
 				} else {
-					const { error } = await supabase.from("projects").update(form).eq("id", form.id);
+					const { error } = await supabase
+						.from("projects")
+						.update(form)
+						.eq("id", form.id);
 					if (error) throw error;
 					setList((l) => l.map((x) => (x.id === form.id ? form : x)));
 				}
@@ -128,57 +241,13 @@ const ProjectsAdmin = () => {
 		}
 	};
 
-	const ProjectForm = () => (
-		<div className="admin-form">
-			<div className="admin-field-row">
-				<div className="admin-field">
-					<label>Title</label>
-					<input value={form.title} onChange={(e) => set("title", e.target.value)} />
-				</div>
-				<div className="admin-field">
-					<label>Alt text</label>
-					<input value={form.alt} onChange={(e) => set("alt", e.target.value)} placeholder="Image description" />
-				</div>
-			</div>
-			<div className="admin-field">
-				<label>Description</label>
-				<textarea value={form.description} onChange={(e) => set("description", e.target.value)} />
-			</div>
-			<div className="admin-field">
-				<label>Image URL</label>
-				<input
-					value={form.image_url}
-					onChange={(e) => set("image_url", e.target.value)}
-					placeholder="https://... or leave blank"
-				/>
-				{form.image_url ? (
-					<img src={form.image_url} alt="" className="img-preview" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-				) : (
-					<div className="img-preview-placeholder">No image</div>
-				)}
-			</div>
-			<div className="admin-field">
-				<label>Live URL (optional)</label>
-				<input value={form.link ?? ""} onChange={(e) => set("link", e.target.value)} placeholder="https://..." />
-			</div>
-			<div className="admin-field">
-				<label>Tags (press Enter or comma to add)</label>
-				<TagsEditor tags={form.tags} onChange={(tags) => set("tags", tags)} />
-			</div>
-			<div className="admin-save-bar">
-				<button className="btn btn-secondary" onClick={cancel}>Cancel</button>
-				<button className="btn btn-primary" onClick={save} disabled={saving}>
-					{saving ? "Saving…" : isNew ? "Add project" : "Save changes"}
-				</button>
-			</div>
-		</div>
-	);
-
 	if (loading) {
 		return (
 			<div>
 				<h1 className="admin-page-title">Projects</h1>
-				<div className="admin-page-loading"><span className="admin-loading-dot" /></div>
+				<div className="admin-page-loading">
+					<span className="admin-loading-dot" />
+				</div>
 			</div>
 		);
 	}
@@ -193,32 +262,78 @@ const ProjectsAdmin = () => {
 					<div className="admin-list-item" key={p.id}>
 						<div className="admin-list-item-header">
 							<div className="admin-list-item-info">
-								<div className="admin-list-item-title">{p.title || <em style={{ opacity: 0.5 }}>Untitled</em>}</div>
+								<div className="admin-list-item-title">
+									{p.title || <em style={{ opacity: 0.5 }}>Untitled</em>}
+								</div>
 								<div className="admin-list-item-sub">
-									{p.tags.join(", ")} {p.link && <>· <a href={p.link} target="_blank" rel="noreferrer">↗ live</a></>}
+									{p.tags.join(", ")}{" "}
+									{p.link && (
+										<>
+											·{" "}
+											<a href={p.link} target="_blank" rel="noreferrer">
+												↗ live
+											</a>
+										</>
+									)}
 								</div>
 							</div>
 							<div className="admin-list-item-actions">
-								<button className="btn btn-secondary btn-sm" onClick={() => startEdit(p)}>Edit</button>
-								<button className="btn btn-danger btn-sm" onClick={() => setConfirm({ id: p.id, title: p.title })}>Delete</button>
+								<button
+									className="btn btn-secondary btn-sm"
+									onClick={() => startEdit(p)}
+								>
+									Edit
+								</button>
+								<button
+									className="btn btn-danger btn-sm"
+									onClick={() => setConfirm({ id: p.id, title: p.title })}
+								>
+									Delete
+								</button>
 							</div>
 						</div>
+						{/* 2. Pass down required states and functions as props */}
 						{editing === p.id && (
-							<div className="admin-list-item-body"><ProjectForm /></div>
+							<div className="admin-list-item-body">
+								<ProjectForm
+									form={form}
+									saving={saving}
+									isNew={isNew}
+									set={set}
+									cancel={cancel}
+									save={save}
+								/>
+							</div>
 						)}
 					</div>
 				))}
 
 				{editing === "__new__" && (
 					<div className="admin-list-item">
-						<div className="admin-list-item-title" style={{ marginBottom: "var(--space-4)" }}>New project</div>
-						<ProjectForm />
+						<div
+							className="admin-list-item-title"
+							style={{ marginBottom: "var(--space-4)" }}
+						>
+							New project
+						</div>
+						<ProjectForm
+							form={form}
+							saving={saving}
+							isNew={isNew}
+							set={set}
+							cancel={cancel}
+							save={save}
+						/>
 					</div>
 				)}
 			</div>
 
 			{editing !== "__new__" && (
-				<button className="btn btn-secondary" style={{ marginTop: "var(--space-4)" }} onClick={startNew}>
+				<button
+					className="btn btn-secondary"
+					style={{ marginTop: "var(--space-4)" }}
+					onClick={startNew}
+				>
 					+ Add project
 				</button>
 			)}
