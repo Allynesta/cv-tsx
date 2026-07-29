@@ -56,6 +56,10 @@ insert into skills (name, rating, category, order_index) values
   ('GitHub', 2, 'Development Tools', 0), ('VS Code', 3, 'Development Tools', 1);
 
 -- Projects
+-- Note: image_url is seeded blank below. The app falls back to the bundled
+-- local images (matched by order_index) whenever a row's image_url is empty,
+-- so leaving it blank is fine — set a real URL here (or in the admin panel)
+-- to override it with a hosted image instead.
 create table projects (
   id uuid primary key default uuid_generate_v4(),
   title text not null,

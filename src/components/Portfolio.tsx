@@ -31,6 +31,9 @@ const Portfolio = () => {
 									className="portfolio-image"
 									loading="lazy"
 									decoding="async"
+									onError={(e) => {
+										(e.target as HTMLImageElement).style.visibility = "hidden";
+									}}
 								/>
 								<div className="project-overlay">
 									<p className="overlay-desc">{project.description}</p>

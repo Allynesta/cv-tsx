@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase, isConfigured } from "../../lib/supabase";
 import { defaultProjects } from "../../data/defaults";
+import { withImageFallback } from "../../hooks/useContent";
 import { useToast } from "../toast";
 import ConfirmModal from "../ConfirmModal";
 import type { Project } from "../../types/content";
@@ -162,15 +163,33 @@ const ProjectsAdmin = () => {
 
 	useEffect(() => {
 		if (!isConfigured || !supabase) return;
-		supabase
-			.from("projects")
-			.select("*")
-			.order("order_index")
-			.then(({ data, error }) => {
-				if (data?.length) setList(data);
-				else if (error) toast("Failed to load projects", "error");
-				setLoading(false);
-			});
+		const client = supabase;
+
+		const load = () => {
+			client
+				.from("projects")
+				.select("*")
+				.order("order_index")
+				.then(({ data, error }) => {
+					if (data?.length) setList(withImageFallback(data));
+					else if (error) toast("Failed to load projects", "error");
+					setLoading(false);
+				});
+		};
+		load();
+
+		const channel = client
+			.channel("admin:projects")
+			.on(
+				"postgres_changes",
+				{ event: "*", schema: "public", table: "projects" },
+				load,
+			)
+			.subscribe();
+
+		return () => {
+			client.removeChannel(channel);
+		};
 	}, []);
 
 	const startEdit = (p: Project) => {

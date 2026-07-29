@@ -65,6 +65,16 @@ html {
   font-size: 16px;
 }
 
+/* Offsets anchor-scroll targets so the fixed 60px header doesn't cover
+   the top of the section they scroll to. */
+#about-section,
+#experience-section,
+#skill-section,
+#portfolio-section,
+#contact-section {
+  scroll-margin-top: 80px;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
